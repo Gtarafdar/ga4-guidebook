@@ -1,0 +1,7 @@
+.DS_Store
+*.log
+.cursor/
+node_modules/
+.env
+.env.*
+ga4-study-simulator.html

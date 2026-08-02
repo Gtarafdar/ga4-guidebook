@@ -1,0 +1,2141 @@
+{
+  "structure": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Acme Retail just spun up analytics. Marketing wants web + iOS + Android in one place for shared key events. What structure fits?",
+        "o": [
+          "Three Accounts (one per platform)",
+          "One Account, one Property, three Data streams",
+          "One Property per platform under different Accounts",
+          "Three Properties under one Account, no shared streams"
+        ],
+        "c": 1,
+        "e": "One property with multiple data streams (web + apps) keeps events in a unified reporting view."
+      },
+      {
+        "q": "A contractor asks for access only to Admin settings on one property. Which GA4 access level is the minimal fit?",
+        "o": [
+          "Viewer",
+          "Analyst",
+          "Editor",
+          "Administrator"
+        ],
+        "c": 3,
+        "e": "Administrator can manage property settings and users; Editor cannot manage users."
+      },
+      {
+        "q": "Finance wants a clean property that never mixes staging traffic. Best first move?",
+        "o": [
+          "Create a second Account for staging",
+          "Use DebugView only",
+          "Create a separate Property (or stream filters) for staging",
+          "Rename the existing stream to Staging"
+        ],
+        "c": 2,
+        "e": "Keep production and staging separated at property/stream/filter level so reports stay trustworthy."
+      },
+      {
+        "q": "Stakeholder: 'Is a data stream the same as a property?' Your one-sentence answer?",
+        "o": [
+          "Yes \u2014 interchangeable names",
+          "A stream is a source of hits inside a property",
+          "A stream is an Account-level object",
+          "A stream only exists for apps"
+        ],
+        "c": 1,
+        "e": "Account \u2192 Property \u2192 Data stream. Streams feed a property."
+      },
+      {
+        "q": "Legal asks where to find the Measurement ID used in the website tag.",
+        "o": [
+          "Account settings only",
+          "Under the web data stream details",
+          "Inside Explore segments",
+          "In BigQuery dataset labels"
+        ],
+        "c": 1,
+        "e": "Web stream details show the Measurement ID (G-XXXX)."
+      },
+      {
+        "q": "You inherit a messy Account with 40 unused Properties. Safest cleanup approach?",
+        "o": [
+          "Delete everything immediately",
+          "Archive/trash unused properties after documenting owners",
+          "Merge all properties into one stream",
+          "Move them to a new Google account without notice"
+        ],
+        "c": 1,
+        "e": "Document ownership, then archive/delete carefully \u2014 deletion is destructive."
+      },
+      {
+        "q": "App team and web team disagree on timezone. Where is reporting timezone set?",
+        "o": [
+          "Per data stream",
+          "At the Property level",
+          "Only in Google Ads",
+          "Per user browser"
+        ],
+        "c": 1,
+        "e": "Reporting time zone (and currency) are property settings."
+      },
+      {
+        "q": "Why might Realtime show hits while standard reports look empty for a brand-new property?",
+        "o": [
+          "Realtime is broken",
+          "Standard reports can lag; Realtime confirms collection first",
+          "Streams never write to standard reports",
+          "You must enable BigQuery first"
+        ],
+        "c": 1,
+        "e": "Use Realtime/DebugView to confirm collection; standard reports can take longer to populate."
+      }
+    ]
+  },
+  "dimensions-metrics": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "A PM asks why 'Add to cart' count and 'Item name' appear differently in a custom report. Core distinction?",
+        "o": [
+          "Both are metrics",
+          "Item name is a dimension; add-to-cart count is a metric",
+          "Both are dimensions",
+          "Item name is a user property only"
+        ],
+        "c": 1,
+        "e": "Dimensions describe; metrics measure."
+      },
+      {
+        "q": "Acme\u2019s dashboard shows Sessions by City. City is\u2026",
+        "o": [
+          "A metric",
+          "A dimension",
+          "An attribution model",
+          "A key event"
+        ],
+        "c": 1,
+        "e": "City is a dimension (label)."
+      },
+      {
+        "q": "Stakeholder wants 'average purchase revenue per user'. That value is\u2026",
+        "o": [
+          "A dimension",
+          "A metric (calculated from event/user data)",
+          "A channel group",
+          "A consent signal"
+        ],
+        "c": 1,
+        "e": "It\u2019s a metric derived from revenue events."
+      },
+      {
+        "q": "Why can combining a high-cardinality dimension with a metric create '(other)' rows?",
+        "o": [
+          "GA4 deletes events",
+          "Cardinality limits collapse rare values",
+          "Metrics cannot be filtered",
+          "Dimensions never pair with metrics"
+        ],
+        "c": 1,
+        "e": "High-cardinality dimensions can push excess values into (other)."
+      },
+      {
+        "q": "In Explore, you drag Session source and Sessions. Which is the metric?",
+        "o": [
+          "Session source",
+          "Sessions",
+          "Both",
+          "Neither \u2014 Explore forbids metrics"
+        ],
+        "c": 1,
+        "e": "Sessions is the metric."
+      },
+      {
+        "q": "Team mistakes bounce rate thinking for GA4. Closest GA4 concept to discuss carefully?",
+        "o": [
+          "Engagement rate / engaged sessions (different model than UA bounce)",
+          "Always identical bounce rate",
+          "Only BigQuery has engagement",
+          "Key events replace engagement"
+        ],
+        "c": 0,
+        "e": "GA4 emphasizes engagement; don\u2019t assume UA bounce maps 1:1."
+      },
+      {
+        "q": "A custom definition collects 'membership_tier' on login. Likely classification?",
+        "o": [
+          "Metric",
+          "Dimension (often user-scoped if set as user property)",
+          "Channel",
+          "Attribution credit"
+        ],
+        "c": 1,
+        "e": "Membership tier is categorical \u2192 dimension / user property."
+      },
+      {
+        "q": "Report looks 'wrong' after adding a free-form text parameter as a dimension. Likely issue?",
+        "o": [
+          "Too few events",
+          "High cardinality / noisy values",
+          "Missing UTMs only",
+          "Consent Mode off"
+        ],
+        "c": 1,
+        "e": "Uncontrolled string dimensions explode cardinality."
+      }
+    ]
+  },
+  "key-events": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Marketing marks purchase as a key event. What does that change technically?",
+        "o": [
+          "It starts collecting purchase for the first time",
+          "It flags an already-collected event as a conversion/key event",
+          "It creates a Google Ads campaign",
+          "It deletes non-purchase events"
+        ],
+        "c": 1,
+        "e": "Key event = conversion flag on an existing event."
+      },
+      {
+        "q": "Acme wants newsletter_signup as a conversion for Ads. First prerequisite?",
+        "o": [
+          "Event must already be collected (or created) before marking key",
+          "Only Admin API can mark key events",
+          "Must use Universal Analytics goals",
+          "Must disable Enhanced measurement"
+        ],
+        "c": 0,
+        "e": "You can only mark events that exist in the property."
+      },
+      {
+        "q": "Stakeholder: 'Key events and Audiences are the same.' Reply?",
+        "o": [
+          "Yes",
+          "No \u2014 key events flag conversions; audiences are reusable user sets",
+          "Audiences replace key events",
+          "Key events only live in Explore"
+        ],
+        "c": 1,
+        "e": "Different tools: conversions vs remarketing/user lists."
+      },
+      {
+        "q": "Counting method / duplicate purchases worry Finance. Relevant setting area?",
+        "o": [
+          "Key event counting configuration",
+          "Channel group Primary only",
+          "Theme colors",
+          "Playlist URLs"
+        ],
+        "c": 0,
+        "e": "Review how key events are counted to avoid overcounting."
+      },
+      {
+        "q": "Team marks every click as a key event. Risk?",
+        "o": [
+          "None",
+          "Conversion reporting becomes noisy; Ads optimization may chase low-value actions",
+          "GA4 stops collecting",
+          "BigQuery export breaks"
+        ],
+        "c": 1,
+        "e": "Reserve key events for meaningful business outcomes."
+      },
+      {
+        "q": "Where do you typically mark an event as key in the UI?",
+        "o": [
+          "Admin \u2192 Events (or Key events)",
+          "Explore \u2192 Segments only",
+          "Ads \u2192 Keywords",
+          "BigQuery \u2192 SQL"
+        ],
+        "c": 0,
+        "e": "Admin events / key events UI."
+      },
+      {
+        "q": "purchase already fires via Enhanced ecommerce. Do you need a second custom event to make it a key event?",
+        "o": [
+          "Yes, always duplicate it",
+          "No \u2014 mark the existing purchase event",
+          "Only via Measurement Protocol",
+          "Only in GTM Preview"
+        ],
+        "c": 1,
+        "e": "Flag the existing recommended event."
+      },
+      {
+        "q": "After marking a key event, historical reports before the change\u2026",
+        "o": [
+          "Always rewrite history automatically",
+          "Generally do not retroactively treat old hits as key events from before the change",
+          "Delete prior data",
+          "Convert UA goals"
+        ],
+        "c": 1,
+        "e": "Marking is not a full historical rewrite of past non-key hits."
+      }
+    ]
+  },
+  "reports": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "You need to prove the tag fires right after deploy. Best report area first?",
+        "o": [
+          "Monetization overview from last year",
+          "Realtime",
+          "Cohort Explore only",
+          "Advertising attribution model comparison first"
+        ],
+        "c": 1,
+        "e": "Realtime confirms recent hits."
+      },
+      {
+        "q": "Standard detail reports still empty 10 minutes after launch. Reasonable explanation?",
+        "o": [
+          "Property is permanently broken",
+          "Processing delay \u2014 keep verifying with Realtime/DebugView",
+          "Must buy GA4 360",
+          "Must enable Signals"
+        ],
+        "c": 1,
+        "e": "Standard reports can lag; Realtime is the sanity check."
+      },
+      {
+        "q": "PM wants side-by-side mobile vs desktop in a standard report. Feature to use?",
+        "o": [
+          "Comparisons",
+          "Delete the web stream",
+          "Force User-ID",
+          "Disable Enhanced measurement"
+        ],
+        "c": 0,
+        "e": "Comparisons layer segments on reports."
+      },
+      {
+        "q": "Traffic acquisition vs User acquisition \u2014 stakeholder confusion. Core difference?",
+        "o": [
+          "Identical forever",
+          "Traffic acquisition focuses on session acquisition; User on first-user acquisition dimensions",
+          "Traffic is only Ads",
+          "User acquisition ignores UTMs"
+        ],
+        "c": 1,
+        "e": "Session vs first-user acquisition lenses."
+      },
+      {
+        "q": "Someone edited the left navigation library. What did they change?",
+        "o": [
+          "Underlying event schema",
+          "Which reports appear for users \u2014 not historical raw data",
+          "BigQuery schema",
+          "Consent defaults"
+        ],
+        "c": 1,
+        "e": "Collections/library control navigation UX."
+      },
+      {
+        "q": "Demo Merchandise Store \u2014 you open Reports snapshot. What should you expect?",
+        "o": [
+          "Empty forever",
+          "Sample ecommerce traffic suitable for learning clicks",
+          "Your private CRM data",
+          "Editable production configs for Acme"
+        ],
+        "c": 1,
+        "e": "Demo account is for learning with sample data."
+      },
+      {
+        "q": "Filter in a report changed today\u2019s view. Does it rewrite collected events?",
+        "o": [
+          "Yes, permanently deletes",
+          "No \u2014 report filters don\u2019t rewrite underlying collection",
+          "Only if Viewer role",
+          "Only on mobile"
+        ],
+        "c": 1,
+        "e": "UI filters \u2260 property data filters."
+      },
+      {
+        "q": "Where do you usually land for pre-built Life cycle reports?",
+        "o": [
+          "Reports section",
+          "Admin \u2192 Product links only",
+          "Coach chat",
+          "Academy playlist only"
+        ],
+        "c": 0,
+        "e": "Reports houses standard overviews/details."
+      }
+    ]
+  },
+  "explore": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Analyst needs a free-form breakdown not in standard reports. Tool?",
+        "o": [
+          "Realtime only",
+          "Explore",
+          "Account trash",
+          "Theme settings"
+        ],
+        "c": 1,
+        "e": "Explore is for custom analysis."
+      },
+      {
+        "q": "Segment vs Audience \u2014 stakeholder wants a one-off analysis this afternoon.",
+        "o": [
+          "Build an Audience and wait 30 days",
+          "Use a Segment inside Explore",
+          "Only Measurement Protocol",
+          "Disable key events"
+        ],
+        "c": 1,
+        "e": "Segments are analysis-time; audiences are reusable entities."
+      },
+      {
+        "q": "Remarketing to purchasers in Google Ads \u2014 which construct?",
+        "o": [
+          "Explore segment only (never publish)",
+          "Audience that can be used with linked Ads",
+          "Channel group",
+          "DebugView filter"
+        ],
+        "c": 1,
+        "e": "Audiences power remarketing; segments don\u2019t publish the same way."
+      },
+      {
+        "q": "Funnel exploration shows drop-off between view_item and add_to_cart. Next best action?",
+        "o": [
+          "Delete the property",
+          "Inspect steps/parameters and validate tagging on those pages",
+          "Turn off all key events",
+          "Switch timezone"
+        ],
+        "c": 1,
+        "e": "Funnels diagnose step loss \u2014 then fix implementation."
+      },
+      {
+        "q": "Path exploration is best when you want\u2026",
+        "o": [
+          "Account billing",
+          "User/page flows through events/pages",
+          "SSL certificates",
+          "UTM builders only"
+        ],
+        "c": 1,
+        "e": "Paths show sequential behavior."
+      },
+      {
+        "q": "Explore quota / sampling concerns appear on a huge property. Practical response?",
+        "o": [
+          "Ignore and screenshot",
+          "Tighten date ranges/segments; consider BigQuery for full fidelity",
+          "Delete Events",
+          "Use only Realtime forever"
+        ],
+        "c": 1,
+        "e": "Large explorations may sample \u2014 narrow or export."
+      },
+      {
+        "q": "Can you save an Explore and share with a teammate who has access?",
+        "o": [
+          "Never",
+          "Yes \u2014 share explorations with users who can access the property",
+          "Only via email CSV of passwords",
+          "Only Administrators outside GA"
+        ],
+        "c": 1,
+        "e": "Shared explorations exist for collaborators with access."
+      },
+      {
+        "q": "Audience built from Explore \u2014 when might membership lag?",
+        "o": [
+          "Audiences never update",
+          "Evaluation can take time; don\u2019t expect instant membership for all users",
+          "Only if offline",
+          "Only on Safari"
+        ],
+        "c": 1,
+        "e": "Audience evaluation isn\u2019t always instantaneous."
+      }
+    ]
+  },
+  "scopes": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Event-scoped parameter applied like a user property in a report \u2014 weird totals. Likely cause?",
+        "o": [
+          "UI theme",
+          "Scope mismatch",
+          "Missing playlist",
+          "Too many screenshots"
+        ],
+        "c": 1,
+        "e": "User/session/event scope mismatches create confusing numbers."
+      },
+      {
+        "q": "Session-scoped dimension stays constant for\u2026",
+        "o": [
+          "One event only",
+          "The session",
+          "The lifetime of the user always",
+          "The Account"
+        ],
+        "c": 1,
+        "e": "Session scope lasts for that session."
+      },
+      {
+        "q": "user_id set on login should typically be treated as\u2026",
+        "o": [
+          "Event metric",
+          "User-scoped identifier",
+          "Channel group",
+          "Attribution model"
+        ],
+        "c": 1,
+        "e": "User-ID is user-scoped stitching."
+      },
+      {
+        "q": "page_location on a page_view is naturally\u2026",
+        "o": [
+          "User scope",
+          "Event scope",
+          "Account scope",
+          "Ads-only scope"
+        ],
+        "c": 1,
+        "e": "Page location is event-scoped."
+      },
+      {
+        "q": "Acme sees item revenue duplicated when joining item-scoped and event-scoped fields carelessly. Lesson?",
+        "o": [
+          "Never use ecommerce",
+          "Respect item vs event scope when building explorations/exports",
+          "Disable Enhanced measurement",
+          "Use only last-click"
+        ],
+        "c": 1,
+        "e": "Ecommerce item scope needs careful joining."
+      },
+      {
+        "q": "Which is NOT a primary GA4 data scope people mean in reporting?",
+        "o": [
+          "Event",
+          "Session",
+          "User",
+          "DNS"
+        ],
+        "c": 3,
+        "e": "DNS isn\u2019t a GA4 hit scope."
+      },
+      {
+        "q": "Custom dimension registered with wrong scope vs how it\u2019s sent. Result?",
+        "o": [
+          "Always perfect",
+          "Misaligned reporting / unexpected (not set)",
+          "Faster BigQuery",
+          "Automatic key events"
+        ],
+        "c": 1,
+        "e": "Register scope to match how you send the parameter."
+      },
+      {
+        "q": "Stakeholder asks for 'lifetime city of user' but city often comes from the hit. Caution?",
+        "o": [
+          "City is always a lifetime user dimension with no caveats",
+          "Geo can vary by hit/session \u2014 don\u2019t assume eternal user city without a user property strategy",
+          "City only exists in UA",
+          "City requires 360"
+        ],
+        "c": 1,
+        "e": "Geo is typically hit/session context, not a permanent user trait unless you model it."
+      }
+    ]
+  },
+  "attribution": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Default attribution mindset in modern GA4 advertising reports is closer to\u2026",
+        "o": [
+          "Always first-click only",
+          "Data-driven / modeled credit rather than assuming last-click",
+          "Random",
+          "Offline only"
+        ],
+        "c": 1,
+        "e": "Don\u2019t assume last-click is the default story."
+      },
+      {
+        "q": "Last-click overcredits\u2026",
+        "o": [
+          "Awareness channels that started the journey",
+          "Closing channels at the end of the path",
+          "Server logs",
+          "Consent banners"
+        ],
+        "c": 1,
+        "e": "Last-click favors closers."
+      },
+      {
+        "q": "First-click overcredits\u2026",
+        "o": [
+          "Closing brand search",
+          "Discovery / early touch channels",
+          "Refunds",
+          "DebugView"
+        ],
+        "c": 1,
+        "e": "First-click favors openers."
+      },
+      {
+        "q": "Finance compares Ads and GA4 conversion totals. Healthy response?",
+        "o": [
+          "They must always match exactly",
+          "Explain lookback windows, models, and linking \u2014 expect differences",
+          "Delete one platform",
+          "Disable UTMs"
+        ],
+        "c": 1,
+        "e": "Cross-platform totals rarely match 1:1."
+      },
+      {
+        "q": "Changing attribution settings \u2014 what should you communicate?",
+        "o": [
+          "Nothing changes in reports",
+          "Credit across channels can shift; note the model when presenting budget stories",
+          "Only affects CSS",
+          "Only affects Coach"
+        ],
+        "c": 1,
+        "e": "Always name the model in stakeholder updates."
+      },
+      {
+        "q": "Paid Social argues they get zero credit under last-click. Possible truth?",
+        "o": [
+          "Paid Social never works",
+          "Assists may be invisible under last-click even if they influenced",
+          "GA4 cannot see Social",
+          "UTMs are illegal"
+        ],
+        "c": 1,
+        "e": "Assists vanish under pure last-click narratives."
+      },
+      {
+        "q": "Lookback window relevance?",
+        "o": [
+          "How far back credit can be considered before conversion",
+          "Font size",
+          "Number of streams",
+          "TTS speed"
+        ],
+        "c": 0,
+        "e": "Windows bound how far attribution looks back."
+      },
+      {
+        "q": "Acme wants to explain DDA simply to execs.",
+        "o": [
+          "Every channel gets equal credit always",
+          "Algorithmic credit across eligible touchpoints using available data",
+          "Only email gets credit",
+          "Only Direct"
+        ],
+        "c": 1,
+        "e": "Data-driven distributes credit using available path data \u2014 with eligibility limits."
+      }
+    ]
+  },
+  "campaign-tracking": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Email campaign needs identifiable sessions in GA4. Classic tool?",
+        "o": [
+          "User-ID only",
+          "UTM parameters on links",
+          "Deleting referrals",
+          "Consent Mode off"
+        ],
+        "c": 1,
+        "e": "UTMs tag campaigns."
+      },
+      {
+        "q": "Google Ads auto-tagging primarily relies on\u2026",
+        "o": [
+          "Manual utm_medium=cpc always",
+          "gclid (and related auto-tagging) when linked correctly",
+          "No parameters ever",
+          "Only fbclid"
+        ],
+        "c": 1,
+        "e": "Ads auto-tagging uses click identifiers."
+      },
+      {
+        "q": "Which UTM is the campaign name bucket?",
+        "o": [
+          "utm_source",
+          "utm_campaign",
+          "utm_content",
+          "utm_term"
+        ],
+        "c": 1,
+        "e": "utm_campaign names the campaign."
+      },
+      {
+        "q": "utm_source vs utm_medium \u2014 quick teaching line?",
+        "o": [
+          "Identical",
+          "Source = where; medium = mechanism/type",
+          "Medium is always the city",
+          "Source is always CPC"
+        ],
+        "c": 1,
+        "e": "Source/medium pair describes origin and type."
+      },
+      {
+        "q": "Two creatives in one email \u2014 which UTM differentiates?",
+        "o": [
+          "utm_content (or term) often used for creative/variant",
+          "utm_id only",
+          "No UTM can",
+          "Only gclid"
+        ],
+        "c": 0,
+        "e": "utm_content commonly differentiates creatives."
+      },
+      {
+        "q": "Missing UTMs on partner links \u2014 symptom?",
+        "o": [
+          "Traffic lumped into less specific channels/referrals/direct depending on case",
+          "Instant key events",
+          "Broken SSL",
+          "Signals forced on"
+        ],
+        "c": 0,
+        "e": "Untagged links lose campaign clarity."
+      },
+      {
+        "q": "Best practice for UTM consistency?",
+        "o": [
+          "Random capitalization each send",
+          "Governed naming conventions (case, source list)",
+          "Never document",
+          "Put PII in utm_content"
+        ],
+        "c": 1,
+        "e": "Governance beats chaos."
+      },
+      {
+        "q": "Stakeholder pastes full URL with UTMs into a QR that redirects and strips query params. Result?",
+        "o": [
+          "Campaign still perfect",
+          "Campaign parameters may be lost \u2014 fix redirect to preserve query",
+          "GA4 invents UTMs",
+          "Ads auto-fixes email"
+        ],
+        "c": 1,
+        "e": "Redirects must preserve query strings."
+      }
+    ]
+  },
+  "advertising": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Before trusting Advertising report conversions, confirm\u2026",
+        "o": [
+          "Fonts loaded",
+          "Google Ads / product links and key events configured appropriately",
+          "Only Explore exists",
+          "Coach API key"
+        ],
+        "c": 1,
+        "e": "Linking + conversions underpin advertising views."
+      },
+      {
+        "q": "Budget meeting: numbers moved after attribution model change. You say\u2026",
+        "o": [
+          "Data is corrupted",
+          "Credit shifted \u2014 compare using the same model over time",
+          "Fire the analyst",
+          "Disable Reports"
+        ],
+        "c": 1,
+        "e": "Hold model constant for apples-to-apples."
+      },
+      {
+        "q": "Remarketing list too small. Check\u2026",
+        "o": [
+          "Audience definition, volume, consent, and linking",
+          "Only CSS",
+          "Only TTS",
+          "Playlist order"
+        ],
+        "c": 0,
+        "e": "Audiences need eligible users and proper linking."
+      },
+      {
+        "q": "Cost data import / linking gaps cause\u2026",
+        "o": [
+          "Perfect ROAS always",
+          "Incomplete non-Google cost visibility in GA",
+          "Automatic refunds",
+          "Scope deletion"
+        ],
+        "c": 1,
+        "e": "Non-Google spend needs import/linking strategies."
+      },
+      {
+        "q": "Conversion lift arguments with execs should include\u2026",
+        "o": [
+          "Only last week\u2019s vibe",
+          "Model, conversion definition, and date range",
+          "Hex colors",
+          "Number of diagrams"
+        ],
+        "c": 1,
+        "e": "Define the metric before debating lift."
+      },
+      {
+        "q": "Ads optimization chasing micro-conversions \u2014 root cause often\u2026",
+        "o": [
+          "Too few key events marked carefully",
+          "Too many low-value key events",
+          "No website",
+          "No streams"
+        ],
+        "c": 1,
+        "e": "Key event hygiene matters for bidding."
+      },
+      {
+        "q": "Cross-channel report disagreement with platform UI. First step?",
+        "o": [
+          "Assume GA4 is always wrong only",
+          "Reconcile definitions (click vs view, windows, attribution)",
+          "Delete property",
+          "Turn off UTMs"
+        ],
+        "c": 1,
+        "e": "Definition alignment first."
+      },
+      {
+        "q": "Product link status should be reviewed when\u2026",
+        "o": [
+          "Advertising numbers look empty or stale",
+          "Choosing fonts",
+          "Writing FAQ only",
+          "Compressing images"
+        ],
+        "c": 0,
+        "e": "Broken links \u2192 empty advertising integrations."
+      }
+    ]
+  },
+  "governance": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Internal office traffic inflates sessions. Control?",
+        "o": [
+          "Data filters / internal traffic rules",
+          "Mark all events key",
+          "Disable Realtime",
+          "Remove UTMs"
+        ],
+        "c": 0,
+        "e": "Filter internal traffic thoughtfully."
+      },
+      {
+        "q": "Referral spam from payment gateway. Approach?",
+        "o": [
+          "Unwanted referrals list",
+          "Delete the web stream",
+          "Disable key events",
+          "Ignore forever without documenting"
+        ],
+        "c": 0,
+        "e": "List payment/referrer exclusions carefully."
+      },
+      {
+        "q": "Big '(other)' row appears. Interpretation?",
+        "o": [
+          "Tracking always broken",
+          "High-cardinality dimension collapse symptom",
+          "Need more UTMs only",
+          "Consent denied always"
+        ],
+        "c": 1,
+        "e": "(other) often means cardinality pressure."
+      },
+      {
+        "q": "Filter applied today \u2014 historical data before filter?",
+        "o": [
+          "Rewritten automatically",
+          "Generally not retroactive",
+          "Deleted from BigQuery always",
+          "Cloned to UA"
+        ],
+        "c": 1,
+        "e": "Filters aren\u2019t time machines."
+      },
+      {
+        "q": "Who should own naming conventions for events?",
+        "o": [
+          "Nobody",
+          "A documented governance owner / analytics lead",
+          "Random interns weekly with no doc",
+          "YouTube commenters"
+        ],
+        "c": 1,
+        "e": "Governance needs an owner."
+      },
+      {
+        "q": "PII accidentally sent in event params. Response?",
+        "o": [
+          "Celebrate",
+          "Stop the collection, scrub processes, follow data deletion/privacy procedures",
+          "Publish more UTMs with emails",
+          "Increase cardinality"
+        ],
+        "c": 1,
+        "e": "PII in GA is a serious compliance issue."
+      },
+      {
+        "q": "Too many custom dimensions registered. Risk?",
+        "o": [
+          "None",
+          "Hitting limits and creating noisy schema",
+          "Faster reports always",
+          "Automatic DDA"
+        ],
+        "c": 1,
+        "e": "Custom defs are finite and costly if abused."
+      },
+      {
+        "q": "Data retention settings matter because\u2026",
+        "o": [
+          "They affect how long certain exploratory user-level data is kept",
+          "They change CSS",
+          "They rename streams nightly",
+          "They create key events"
+        ],
+        "c": 0,
+        "e": "Retention is a governance/privacy control."
+      }
+    ]
+  },
+  "bigquery-api": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Analyst needs raw event-level SQL. Path?",
+        "o": [
+          "Only standard Reports UI",
+          "BigQuery export",
+          "TTS settings",
+          "Mark complete button"
+        ],
+        "c": 1,
+        "e": "BQ export for raw-ish events."
+      },
+      {
+        "q": "Data API is primarily for\u2026",
+        "o": [
+          "Sending hits from servers",
+          "Programmatically running reports/queries",
+          "Replacing Consent Mode",
+          "Hosting videos"
+        ],
+        "c": 1,
+        "e": "Data API pulls report data."
+      },
+      {
+        "q": "Measurement Protocol is for\u2026",
+        "o": [
+          "UI themes",
+          "Sending events from server/offline sources",
+          "Creating Explore funnels only",
+          "Font loading"
+        ],
+        "c": 1,
+        "e": "MP = server/offline event ingress."
+      },
+      {
+        "q": "Admin API helps with\u2026",
+        "o": [
+          "Managing configuration programmatically",
+          "Watching Skillshop only",
+          "Compressing PNGs",
+          "TTS voices"
+        ],
+        "c": 0,
+        "e": "Admin API configures accounts/properties."
+      },
+      {
+        "q": "Standard GA4 BigQuery export cost narrative (high level)?",
+        "o": [
+          "Always paid enterprise only",
+          "Export available on standard with product quotas/limits to respect",
+          "Forbidden",
+          "Only via Screenshots"
+        ],
+        "c": 1,
+        "e": "Know quotas; verify current Google docs for caps."
+      },
+      {
+        "q": "When Reports sampling frustrates you, BQ helps because\u2026",
+        "o": [
+          "It invents conversions",
+          "You can query exported events with fuller control",
+          "It disables consent",
+          "It removes scopes"
+        ],
+        "c": 1,
+        "e": "SQL on export for deeper analysis."
+      },
+      {
+        "q": "MP hits missing client_id/user_id strategy can cause\u2026",
+        "o": [
+          "Perfect stitching always",
+          "Broken user/session stitching",
+          "Automatic Ads boost",
+          "Free 360"
+        ],
+        "c": 1,
+        "e": "Identity fields matter for MP quality."
+      },
+      {
+        "q": "API quota exceeded \u2014 practical move?",
+        "o": [
+          "Hammer retries infinitely",
+          "Backoff, cache, reduce polling, review quota docs",
+          "Delete property",
+          "Disable HTTPS"
+        ],
+        "c": 1,
+        "e": "Respect quotas."
+      }
+    ]
+  },
+  "ga360": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Subproperty vs roll-up \u2014 teaching line?",
+        "o": [
+          "Identical",
+          "Subproperty filters from one source; roll-up combines multiple sources",
+          "Roll-up is a stream",
+          "Subproperty is BigQuery only"
+        ],
+        "c": 1,
+        "e": "Different 360 constructs."
+      },
+      {
+        "q": "Governance team wants EU-only view from one global property. 360 concept?",
+        "o": [
+          "Subproperty with filters",
+          "Roll-up of random accounts",
+          "Disable streams",
+          "Coach mode"
+        ],
+        "c": 0,
+        "e": "Subproperties support governed filtered views."
+      },
+      {
+        "q": "Exec wants one view across brand A + brand B properties. Concept?",
+        "o": [
+          "Subproperty",
+          "Roll-up property",
+          "DebugView",
+          "UTM content"
+        ],
+        "c": 1,
+        "e": "Roll-up combines sources."
+      },
+      {
+        "q": "Without 360, can you still do serious analysis?",
+        "o": [
+          "No, impossible",
+          "Yes \u2014 standard GA4 + Explore + BQ still powerful",
+          "Only with Coach keys",
+          "Only with expert videos"
+        ],
+        "c": 1,
+        "e": "360 is not required for learning/core work."
+      },
+      {
+        "q": "SLA / support differences are a reason orgs buy 360. True?",
+        "o": [
+          "Often part of enterprise value prop \u2014 verify contracts",
+          "360 only changes fonts",
+          "360 removes consent needs",
+          "360 deletes UTMs"
+        ],
+        "c": 0,
+        "e": "Enterprise features/support differ \u2014 check current SKUs."
+      },
+      {
+        "q": "Roll-up identity stitching caveats \u2014 you should\u2026",
+        "o": [
+          "Assume perfect cross-brand identity always",
+          "Read product limits and test carefully",
+          "Ignore docs",
+          "Use only last-click"
+        ],
+        "c": 1,
+        "e": "Roll-ups have practical limits."
+      },
+      {
+        "q": "Subproperty filters are useful for\u2026",
+        "o": [
+          "Hiding sensitive markets/apps from broader audiences",
+          "Replacing key events",
+          "Hosting LMS",
+          "TTS"
+        ],
+        "c": 0,
+        "e": "Governance via filtered child views."
+      },
+      {
+        "q": "Choosing 360 should start from\u2026",
+        "o": [
+          "Logo color",
+          "Clear requirements (limits, governance, unsampled needs)",
+          "Number of screenshots",
+          "Playlist length"
+        ],
+        "c": 1,
+        "e": "Buy for requirements, not vibes."
+      }
+    ]
+  },
+  "consent": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Consent denied \u2014 crude myth vs reality?",
+        "o": [
+          "Collection always fully stops with zero modeling",
+          "Consent Mode can reduce fidelity and rely more on modeled/cookieless behaviors depending on setup",
+          "GA4 emails users",
+          "Streams delete themselves"
+        ],
+        "c": 1,
+        "e": "Denied \u2260 always 'nothing happens'."
+      },
+      {
+        "q": "CMP must communicate consent to\u2026",
+        "o": [
+          "Only CSS",
+          "Google tags / Consent Mode signals appropriately",
+          "IBM Plex Mono",
+          "Diagrams"
+        ],
+        "c": 1,
+        "e": "Wire CMP \u2192 tag consent states."
+      },
+      {
+        "q": "Basic vs advanced Consent Mode conversations should mention\u2026",
+        "o": [
+          "Whether tags wait for update vs earlier defaults \u2014 implement carefully",
+          "Font pairing",
+          "Hero images",
+          "Smoke tests only"
+        ],
+        "c": 0,
+        "e": "Implementation pattern matters."
+      },
+      {
+        "q": "Modeled conversions appear \u2014 stakeholder panic. You explain\u2026",
+        "o": [
+          "Fraud only",
+          "Privacy-safe estimation when observations are limited by consent",
+          "Need more UTMs with emails",
+          "Disable HTTPS"
+        ],
+        "c": 1,
+        "e": "Modeling fills gaps under privacy constraints."
+      },
+      {
+        "q": "Legal asks where consent defaults are set for tags.",
+        "o": [
+          "Often in GTM/gtag consent configuration before/with CMP",
+          "In Fraunces font settings",
+          "In exam overlay",
+          "In smoke_check"
+        ],
+        "c": 0,
+        "e": "Defaults live in tag configuration."
+      },
+      {
+        "q": "Ignoring consent requirements in regulated regions risks\u2026",
+        "o": [
+          "Nothing",
+          "Compliance and trust issues \u2014 treat seriously",
+          "Faster DDA only",
+          "More screenshots"
+        ],
+        "c": 1,
+        "e": "Compliance is non-optional."
+      },
+      {
+        "q": "ads_data_redaction / URL passthrough topics belong to\u2026",
+        "o": [
+          "Consent Mode advanced discussions",
+          "Chapter gating only",
+          "TTS cache",
+          "Hero CTA"
+        ],
+        "c": 0,
+        "e": "Advanced consent tooling knobs."
+      },
+      {
+        "q": "After CMP launch, DebugView is useful to\u2026",
+        "o": [
+          "Verify consent state and which tags fire under grant/deny",
+          "Change property timezone",
+          "Create roll-ups",
+          "Compress images"
+        ],
+        "c": 0,
+        "e": "Validate real consent behavior on a test device."
+      }
+    ]
+  },
+  "signalsads": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Google Signals helps with\u2026",
+        "o": [
+          "Cross-device insights when users are signed-in with Ads personalization eligible",
+          "Replacing all User-ID needs always",
+          "Hosting video",
+          "Gate quizzes"
+        ],
+        "c": 0,
+        "e": "Signals \u2260 full substitute for first-party User-ID."
+      },
+      {
+        "q": "Signals are on by default everywhere?",
+        "o": [
+          "Yes always",
+          "No \u2014 typically must be enabled thoughtfully",
+          "Only in Explore",
+          "Only in Coach"
+        ],
+        "c": 1,
+        "e": "Enable deliberately."
+      },
+      {
+        "q": "Thresholding may hide data when\u2026",
+        "o": [
+          "Reports too wide open on small slices with Signals/identity features",
+          "Font too large",
+          "No diagrams",
+          "Exam at 80%"
+        ],
+        "c": 0,
+        "e": "Privacy thresholds can suppress rows."
+      },
+      {
+        "q": "User-ID vs Signals \u2014 one teaching line?",
+        "o": [
+          "Identical",
+          "User-ID is your logged-in ID; Signals uses Google identity when eligible",
+          "Signals replaces Measurement ID",
+          "User-ID is a metric"
+        ],
+        "c": 1,
+        "e": "Different identity systems."
+      },
+      {
+        "q": "Ads personalization off for a user \u2014 Signals implication?",
+        "o": [
+          "Still full cross-device Signals always",
+          "May limit Signals usefulness for that user",
+          "Deletes property",
+          "Creates UTMs"
+        ],
+        "c": 1,
+        "e": "Eligibility matters."
+      },
+      {
+        "q": "Blended reporting discussions appear when\u2026",
+        "o": [
+          "Identity features / modeling are in play",
+          "Choosing teal accents",
+          "Writing README only",
+          "Smoke tests"
+        ],
+        "c": 0,
+        "e": "Identity introduces modeling/threshold nuances."
+      },
+      {
+        "q": "Should you enable Signals without legal review in a sensitive org?",
+        "o": [
+          "Yes casually",
+          "No \u2014 align with privacy/legal policy first",
+          "Only if exam passed",
+          "Only on mobile CSS"
+        ],
+        "c": 1,
+        "e": "Governance first."
+      },
+      {
+        "q": "Remarketing expansion claims should be\u2026",
+        "o": [
+          "Verified against actual audience sizes and policies",
+          "Assumed infinite",
+          "Tied to TTS",
+          "Stored in plan.md"
+        ],
+        "c": 0,
+        "e": "Measure, don\u2019t hype."
+      }
+    ]
+  },
+  "setupassist": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Setup Assistant is best described as\u2026",
+        "o": [
+          "A one-time wizard you never revisit",
+          "A checklist in Admin you should revisit after major changes",
+          "A YouTube playlist",
+          "A gate quiz"
+        ],
+        "c": 1,
+        "e": "Revisit after streams/Ads/key events change."
+      },
+      {
+        "q": "Checklist still shows incomplete linking \u2014 action?",
+        "o": [
+          "Ignore forever",
+          "Open the recommended Admin tasks and finish configuration",
+          "Delete topics.json",
+          "Disable Practice tab"
+        ],
+        "c": 1,
+        "e": "Complete the flagged setup steps."
+      },
+      {
+        "q": "New web stream added \u2014 why reopen Setup Assistant?",
+        "o": [
+          "It may re-flag incomplete collection/settings",
+          "It changes fonts",
+          "It writes gates.json",
+          "It compresses images"
+        ],
+        "c": 0,
+        "e": "New streams change completeness."
+      },
+      {
+        "q": "Setup Assistant replaces learning the data model?",
+        "o": [
+          "Yes",
+          "No \u2014 it\u2019s a helper checklist, not a substitute for concepts",
+          "It is the exam",
+          "It is Consent Mode"
+        ],
+        "c": 1,
+        "e": "Still learn structure/events/etc."
+      },
+      {
+        "q": "Product links section incomplete \u2014 impact?",
+        "o": [
+          "Possible gaps in Ads/Free Listings integrations",
+          "No impact ever",
+          "Blocks Resources mode",
+          "Breaks TTS"
+        ],
+        "c": 0,
+        "e": "Integrations need linking."
+      },
+      {
+        "q": "Who usually works Setup Assistant items?",
+        "o": [
+          "Analysts/admins implementing the property",
+          "Random site visitors without login",
+          "YouTube algorithm",
+          "Smoke script"
+        ],
+        "c": 0,
+        "e": "Admins/implementers."
+      },
+      {
+        "q": "Marking setup tasks done without verifying Realtime\u2026",
+        "o": [
+          "Perfect practice",
+          "Risky \u2014 verify collection independently",
+          "Required by LMS",
+          "Needed for diagrams"
+        ],
+        "c": 1,
+        "e": "Checklist \u2260 proof of hits."
+      },
+      {
+        "q": "Assistant recommends enhanced measurement \u2014 you should\u2026",
+        "o": [
+          "Blindly enable every toggle in production without QA",
+          "Review each toggle\u2019s meaning, then enable what you need",
+          "Disable all reports",
+          "Remove UTMs"
+        ],
+        "c": 1,
+        "e": "Understand before enabling."
+      }
+    ]
+  },
+  "eventparams": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Recommended events vs custom \u2014 priority?",
+        "o": [
+          "Always invent custom names first",
+          "Prefer automatically collected \u2192 recommended \u2192 custom only if needed",
+          "Never use recommended",
+          "Only Measurement Protocol names"
+        ],
+        "c": 1,
+        "e": "Fit the taxonomy before inventing."
+      },
+      {
+        "q": "Custom event names should\u2026",
+        "o": [
+          "Include spaces and PII freely",
+          "Follow naming rules (snake_case conventions, no reserved abuse)",
+          "Be random UUIDs only",
+          "Match CSS classes"
+        ],
+        "c": 1,
+        "e": "Clean taxonomy."
+      },
+      {
+        "q": "Parameters enrich events by\u2026",
+        "o": [
+          "Attaching descriptive fields to the event hit",
+          "Replacing properties",
+          "Deleting streams",
+          "Changing fonts"
+        ],
+        "c": 0,
+        "e": "Params describe the event."
+      },
+      {
+        "q": "Registering custom dimensions/metrics is needed when\u2026",
+        "o": [
+          "You want params in standard reporting cards that require registration",
+          "You only use Realtime forever without reporting needs",
+          "You watch Academy",
+          "You pass gates"
+        ],
+        "c": 0,
+        "e": "Custom defs unlock reporting on custom params."
+      },
+      {
+        "q": "Automatically collected events\u2026",
+        "o": [
+          "Never exist",
+          "Come from the tag/SDK without custom code for basics",
+          "Require 360",
+          "Require Coach"
+        ],
+        "c": 1,
+        "e": "Auto events cover basics."
+      },
+      {
+        "q": "Too many unique event names causes\u2026",
+        "o": [
+          "Cleaner governance",
+          "Schema sprawl and analyst confusion",
+          "Faster consent",
+          "Auto roll-up"
+        ],
+        "c": 1,
+        "e": "Curate the event dictionary."
+      },
+      {
+        "q": "value + currency on purchase matter because\u2026",
+        "o": [
+          "Revenue reporting depends on them",
+          "They set TTS voice",
+          "They unlock Fraunces",
+          "They create screenshots"
+        ],
+        "c": 0,
+        "e": "Ecommerce value fields drive revenue metrics."
+      },
+      {
+        "q": "GTM collects event but GA4 UI never shows it after days \u2014 debug order?",
+        "o": [
+          "Give up",
+          "Preview/debug tag \u2192 DebugView \u2192 Realtime \u2192 then standard",
+          "Only change attribution",
+          "Only edit README"
+        ],
+        "c": 1,
+        "e": "Follow the verification chain."
+      }
+    ]
+  },
+  "enhanced-measurement": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Enhanced measurement primarily gives you\u2026",
+        "o": [
+          "Automatic web interactions (scroll, outbound, site search, etc.) with toggles",
+          "Offline MP only",
+          "Roll-up properties",
+          "Gate scores"
+        ],
+        "c": 0,
+        "e": "Toggle-based auto events on web streams."
+      },
+      {
+        "q": "Site search toggle needs\u2026",
+        "o": [
+          "Query parameter configuration awareness",
+          "A new Account",
+          "360 always",
+          "User-ID"
+        ],
+        "c": 0,
+        "e": "Tell it which query params mean search."
+      },
+      {
+        "q": "Outbound clicks tracking helps measure\u2026",
+        "o": [
+          "Clicks leaving to other hosts",
+          "Server CPU",
+          "Font downloads only",
+          "Exam timer"
+        ],
+        "c": 0,
+        "e": "Leave-site clicks."
+      },
+      {
+        "q": "Should you enable every EM toggle blindly on a complex site?",
+        "o": [
+          "Yes",
+          "No \u2014 review noise vs need, especially forms/videos",
+          "Only on fail screens",
+          "Only in Academy"
+        ],
+        "c": 1,
+        "e": "Selective enablement."
+      },
+      {
+        "q": "File download event is useful for\u2026",
+        "o": [
+          "PDF/resource download measurement",
+          "Deleting properties",
+          "Consent legal text authoring",
+          "Smoke tests"
+        ],
+        "c": 0,
+        "e": "Track downloads of files."
+      },
+      {
+        "q": "EM vs GTM custom tags \u2014 when custom still needed?",
+        "o": [
+          "Never",
+          "When EM doesn\u2019t cover the interaction semantics you need",
+          "Only for diagrams",
+          "Only for TTS"
+        ],
+        "c": 1,
+        "e": "EM isn\u2019t every business event."
+      },
+      {
+        "q": "Form interaction noise \u2014 mitigation?",
+        "o": [
+          "Disable or refine form tracking; validate true submissions separately",
+          "Mark all forms as key events",
+          "Delete web stream",
+          "Ignore parameters"
+        ],
+        "c": 0,
+        "e": "Form events can be noisy."
+      },
+      {
+        "q": "Where are EM toggles found?",
+        "o": [
+          "Web data stream enhanced measurement settings",
+          "Explore segments",
+          "Exam overlay",
+          "Footer links"
+        ],
+        "c": 0,
+        "e": "Under the web stream."
+      }
+    ]
+  },
+  "debugview": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "DebugView shows\u2026",
+        "o": [
+          "All production users always",
+          "Traffic from devices/sessions flagged for debug",
+          "Only BigQuery",
+          "Only failed gates"
+        ],
+        "c": 1,
+        "e": "Debug-flagged traffic only."
+      },
+      {
+        "q": "Best use case right after a GTM publish?",
+        "o": [
+          "Watch TV",
+          "Verify events/params on a debug device in DebugView",
+          "Delete key events",
+          "Change display font"
+        ],
+        "c": 1,
+        "e": "Validate implementation."
+      },
+      {
+        "q": "Realtime vs DebugView?",
+        "o": [
+          "Identical",
+          "DebugView is deeper event inspector for debug devices; Realtime is broader recent activity",
+          "Realtime needs 360",
+          "DebugView is Resources mode"
+        ],
+        "c": 1,
+        "e": "Complementary tools."
+      },
+      {
+        "q": "Nothing appears in DebugView \u2014 checklist item?",
+        "o": [
+          "Confirm debug mode enabled on the test browser/device",
+          "Buy 360",
+          "Disable HTTPS",
+          "Remove UTMs"
+        ],
+        "c": 0,
+        "e": "Device must be in debug."
+      },
+      {
+        "q": "Parameter misspelled \u2014 where caught fastest?",
+        "o": [
+          "DebugView event detail",
+          "Annual brand survey",
+          "Hero CTA",
+          "Plan file"
+        ],
+        "c": 0,
+        "e": "Inspect param payloads live."
+      },
+      {
+        "q": "Leaving debug on for normal users accidentally\u2026",
+        "o": [
+          "Is ideal for sampling",
+          "Can clutter DebugView and isn\u2019t needed for prod users",
+          "Improves DDA",
+          "Creates roll-ups"
+        ],
+        "c": 1,
+        "e": "Use debug intentionally."
+      },
+      {
+        "q": "DebugView replaces standard report QA for executives?",
+        "o": [
+          "Yes forever",
+          "No \u2014 it\u2019s an implementation tool, not the exec dashboard",
+          "It is the exam",
+          "It is Consent Mode"
+        ],
+        "c": 1,
+        "e": "Different audiences."
+      },
+      {
+        "q": "GTM Preview connected but GA4 DebugView empty \u2014 next?",
+        "o": [
+          "Check GA4 Debug mode / tag firing to the right Measurement ID",
+          "Delete Account",
+          "Rewrite all learn copy",
+          "Disable Practice"
+        ],
+        "c": 0,
+        "e": "Verify the hit actually reaches that property."
+      }
+    ]
+  },
+  "user-id": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "User-ID feature is for\u2026",
+        "o": [
+          "Your first-party logged-in identifier sent with hits",
+          "Google account email automatically",
+          "Random client IDs only",
+          "Channel groups"
+        ],
+        "c": 0,
+        "e": "First-party authenticated ID."
+      },
+      {
+        "q": "PII rule for User-ID values?",
+        "o": [
+          "Send emails/phone as ID freely",
+          "Never send plain PII \u2014 use stable irreversible identifiers",
+          "Send passwords",
+          "Send full credit cards"
+        ],
+        "c": 1,
+        "e": "No PII in User-ID."
+      },
+      {
+        "q": "User-ID vs client ID?",
+        "o": [
+          "Same",
+          "Client ID is device/browser storage identity; User-ID is your login identity when set",
+          "Client ID is Ads only",
+          "User-ID is a metric"
+        ],
+        "c": 1,
+        "e": "Different identity layers."
+      },
+      {
+        "q": "Cross-device story improves when\u2026",
+        "o": [
+          "Same User-ID is set consistently after login across devices",
+          "You disable all streams",
+          "You remove key events",
+          "You ignore consent"
+        ],
+        "c": 0,
+        "e": "Consistent ID across devices."
+      },
+      {
+        "q": "Implementation ownership usually sits with\u2026",
+        "o": [
+          "Engineering + analytics defining when to set/clear User-ID",
+          "YouTube commenters",
+          "Smoke script",
+          "Footer"
+        ],
+        "c": 0,
+        "e": "Product instrumentation."
+      },
+      {
+        "q": "Reporting identity can still be complex because\u2026",
+        "o": [
+          "Multiple identity spaces and privacy features interact",
+          "Fonts conflict",
+          "Diagrams overlap",
+          "Academy filters"
+        ],
+        "c": 0,
+        "e": "Identity is layered."
+      },
+      {
+        "q": "Unset User-ID on logout \u2014 why discuss?",
+        "o": [
+          "Prevent stitching the next visitor on a shared device incorrectly",
+          "Improve CSS",
+          "Unlock exam early",
+          "Create gates"
+        ],
+        "c": 0,
+        "e": "Shared devices matter."
+      },
+      {
+        "q": "Signals make User-ID unnecessary always?",
+        "o": [
+          "Yes",
+          "No \u2014 User-ID remains valuable first-party identity when you have logins",
+          "Only in 360",
+          "Only offline"
+        ],
+        "c": 1,
+        "e": "Complementary, not identical."
+      }
+    ]
+  },
+  "cross-domain": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "User goes shop.com \u2192 checkout.partner.com without cross-domain setup. Symptom?",
+        "o": [
+          "Same session continues always",
+          "Often a new session / broken journey continuity",
+          "Automatic User-ID",
+          "Consent granted"
+        ],
+        "c": 1,
+        "e": "Linker needed for continuity."
+      },
+      {
+        "q": "Where do you configure web cross-domain linking typically?",
+        "o": [
+          "Admin data stream tag settings / linker domains",
+          "Fraunces settings",
+          "Exam pass mark",
+          "Story takeaway"
+        ],
+        "c": 0,
+        "e": "Configure linker domains."
+      },
+      {
+        "q": "Primary domain + subdomain usually\u2026",
+        "o": [
+          "Still needs thoughtful cookie/domain configuration",
+          "Never share cookies",
+          "Require 360",
+          "Forbid UTMs"
+        ],
+        "c": 0,
+        "e": "Subdomains need correct cookie domain setup."
+      },
+      {
+        "q": "Payment gateway referral spikes after checkout return \u2014 also check\u2026",
+        "o": [
+          "Unwanted referrals + journey tagging",
+          "Only TTS",
+          "Only Academy tags",
+          "Only smoke_check"
+        ],
+        "c": 0,
+        "e": "Referrals and cross-domain both matter."
+      },
+      {
+        "q": "GTM linker vs gtag linker \u2014 principle?",
+        "o": [
+          "Same underlying need to decorate/share IDs across domains",
+          "Unrelated to sessions",
+          "Only for PDFs",
+          "Only for Explore"
+        ],
+        "c": 0,
+        "e": "Both address cross-domain identity."
+      },
+      {
+        "q": "Testing cross-domain successfully looks like\u2026",
+        "o": [
+          "Continuous client id/session across the hop in debug tools",
+          "Two unrelated new users always",
+          "Deleted key events",
+          "Disabled EM"
+        ],
+        "c": 0,
+        "e": "Verify IDs persist across hop."
+      },
+      {
+        "q": "Listing domains incorrectly (typos) causes\u2026",
+        "o": [
+          "Perfect stitching",
+          "Failed linking",
+          "Automatic modeling fix",
+          "Roll-up creation"
+        ],
+        "c": 1,
+        "e": "Exact domain config matters."
+      },
+      {
+        "q": "Cross-domain is irrelevant for single-host sites?",
+        "o": [
+          "Often yes \u2014 prioritize other issues first",
+          "Never relevant ever even with payment domains",
+          "Only for Coach",
+          "Only for illustrations"
+        ],
+        "c": 0,
+        "e": "Single host simplifies \u2014 until you add external checkouts."
+      }
+    ]
+  },
+  "predictive": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Predictive metrics need\u2026",
+        "o": [
+          "Enough qualifying historical positive/negative examples",
+          "Only a logo",
+          "Only gate pass",
+          "Only expert videos"
+        ],
+        "c": 0,
+        "e": "Volume/eligibility thresholds."
+      },
+      {
+        "q": "Purchase probability is\u2026",
+        "o": [
+          "A guaranteed invoice",
+          "A model score estimating likelihood",
+          "A UTM",
+          "A stream type"
+        ],
+        "c": 1,
+        "e": "Probabilistic estimate."
+      },
+      {
+        "q": "Churn probability helps\u2026",
+        "o": [
+          "Retention outreach targeting when available",
+          "SSL renewal",
+          "Font choice",
+          "Smoke JSON"
+        ],
+        "c": 0,
+        "e": "Act on lapse risk when eligible."
+      },
+      {
+        "q": "Predicted revenue should be presented to finance as\u2026",
+        "o": [
+          "Accounting fact identical to ledger",
+          "Model estimate with caveats",
+          "Consent string",
+          "Diagram SVG"
+        ],
+        "c": 1,
+        "e": "Don\u2019t confuse with booked revenue."
+      },
+      {
+        "q": "Why might predictive options be greyed out?",
+        "o": [
+          "Insufficient eligible data / not meeting prerequisites",
+          "Wrong CSS theme",
+          "Missing README section",
+          "Locked chapter 1 only"
+        ],
+        "c": 0,
+        "e": "Eligibility gates the feature."
+      },
+      {
+        "q": "Best practice when metrics appear?",
+        "o": [
+          "Blindly automate huge spend",
+          "Validate, start small, monitor",
+          "Delete BQ",
+          "Disable Reports"
+        ],
+        "c": 1,
+        "e": "Cautious activation."
+      },
+      {
+        "q": "Predictive audiences are useful for\u2026",
+        "o": [
+          "Ads/remarketing style targeting when linked and eligible",
+          "Replacing Consent Mode",
+          "Hosting LMS",
+          "TTS cache"
+        ],
+        "c": 0,
+        "e": "Activation use cases."
+      },
+      {
+        "q": "Stakeholder asks for predictions on day 1 of a tiny property. Answer?",
+        "o": [
+          "Available instantly always",
+          "Likely unavailable until data prerequisites met",
+          "Only needs Academy filter",
+          "Only needs confetti"
+        ],
+        "c": 1,
+        "e": "Needs history/volume."
+      }
+    ]
+  },
+  "channel-groups": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "Default Channel Group is\u2026",
+        "o": [
+          "Your only allowed group forever",
+          "A starting categorization you can supplement with custom groups (within limits)",
+          "A key event",
+          "A consent type"
+        ],
+        "c": 1,
+        "e": "Custom groups exist with limits."
+      },
+      {
+        "q": "Primary channel group setting matters because\u2026",
+        "o": [
+          "It influences which grouping standard reports lean on",
+          "It sets TTS voice",
+          "It creates diagrams",
+          "It passes gates"
+        ],
+        "c": 0,
+        "e": "Primary drives default channel reporting."
+      },
+      {
+        "q": "Custom rules should be\u2026",
+        "o": [
+          "Documented and ordered carefully (first match logic awareness)",
+          "Random each week",
+          "Stored only in Slack DMs",
+          "PII-rich"
+        ],
+        "c": 0,
+        "e": "Rule order matters."
+      },
+      {
+        "q": "Paid Search mistagged as Referral \u2014 fix via\u2026",
+        "o": [
+          "UTM/governance and/or channel rules",
+          "Deleting Explore",
+          "Disabling EM",
+          "Removing User-ID"
+        ],
+        "c": 0,
+        "e": "Fix tagging and rules."
+      },
+      {
+        "q": "Limit awareness: custom channel groups are\u2026",
+        "o": [
+          "Unlimited infinite",
+          "Capped per property \u2014 plan them",
+          "Only on mobile",
+          "Only with 360 always"
+        ],
+        "c": 1,
+        "e": "Respect product limits (verify current caps)."
+      },
+      {
+        "q": "Channel group changes \u2014 communicate to stakeholders that\u2026",
+        "o": [
+          "Historical interpretation may shift for reporting views",
+          "Raw hits rewrite at collection always",
+          "Fonts change",
+          "Exam unlocks"
+        ],
+        "c": 0,
+        "e": "Reporting lens changed."
+      },
+      {
+        "q": "Direct traffic spike investigation includes\u2026",
+        "o": [
+          "Untagged links, dark social, apps, https upgrades, etc.",
+          "Only Coach hallucinations",
+          "Only plan file",
+          "Only confetti"
+        ],
+        "c": 0,
+        "e": "Direct is a bucket of unknowns."
+      },
+      {
+        "q": "Organic Social vs Paid Social rules need\u2026",
+        "o": [
+          "Clear source/medium definitions",
+          "Identical everything",
+          "No UTMs ever",
+          "No documentation"
+        ],
+        "c": 0,
+        "e": "Define paid vs organic clearly."
+      }
+    ]
+  },
+  "gtag-gtm": {
+    "passPercent": 70,
+    "questions": [
+      {
+        "q": "gtag.js vs GTM \u2014 shared truth?",
+        "o": [
+          "Totally unrelated pixels",
+          "Both can load the Google tag; GTM is a container to manage tags",
+          "GTM cannot send to GA4",
+          "gtag cannot set fields"
+        ],
+        "c": 1,
+        "e": "Same Google tag family; different ops model."
+      },
+      {
+        "q": "Marketing wants frequent tag changes without eng deploys. Lean\u2026",
+        "o": [
+          "Hardcoded gtag only forever",
+          "GTM with governed publishing",
+          "Disable all tags",
+          "Only screenshots"
+        ],
+        "c": 1,
+        "e": "GTM enables safer iteration if governed."
+      },
+      {
+        "q": "GTM Preview mode pairs well with\u2026",
+        "o": [
+          "GA4 DebugView",
+          "Exam timer only",
+          "Fraunces",
+          "Smoke failures"
+        ],
+        "c": 0,
+        "e": "Preview + DebugView."
+      },
+      {
+        "q": "Multiple GTM containers firing duplicate page_view \u2014 risk?",
+        "o": [
+          "Inflated counts",
+          "Better DDA always",
+          "Automatic consent",
+          "Free 360"
+        ],
+        "c": 0,
+        "e": "Duplicates inflate."
+      },
+      {
+        "q": "Server-side GTM discussions are about\u2026",
+        "o": [
+          "Moving tagging workload/server collection patterns",
+          "Changing lesson titles",
+          "Academy chips only",
+          "Progress v1 keys"
+        ],
+        "c": 0,
+        "e": "Server-side is an architecture choice."
+      },
+      {
+        "q": "Hardcoded gtag is still fine when\u2026",
+        "o": [
+          "Simple sites with rare tag changes and clear ownership",
+          "You need 40 vendors without process",
+          "You refuse HTTPS",
+          "You store API keys in git"
+        ],
+        "c": 0,
+        "e": "Simplicity can win."
+      },
+      {
+        "q": "Measurement ID in GTM GA4 tag must\u2026",
+        "o": [
+          "Match the intended property stream",
+          "Be random",
+          "Match the LMS course id",
+          "Match font names"
+        ],
+        "c": 0,
+        "e": "Wrong ID \u2192 wrong property."
+      },
+      {
+        "q": "Governance for GTM should include\u2026",
+        "o": [
+          "Workspaces, approvals, naming, and environments",
+          "Public Editor to world",
+          "Shared personal access tokens in Slack",
+          "No versions"
+        ],
+        "c": 0,
+        "e": "Treat GTM like production code."
+      }
+    ]
+  }
+}

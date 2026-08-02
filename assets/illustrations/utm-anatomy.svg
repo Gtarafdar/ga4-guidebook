@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="UTM parameter anatomy">
+  <rect width="720" height="300" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="20" fill="#1c2430">UTM anatomy (educational)</text>
+  <rect x="40" y="70" width="640" height="56" rx="10" fill="#1c2430"/>
+  <text x="56" y="104" font-family="ui-monospace,monospace" font-size="13" fill="#d7eef0">https://shop.example/?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=spring</text>
+  <g font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">
+    <rect x="40" y="150" width="190" height="70" rx="8" fill="#fff" stroke="#c9d2d8"/>
+    <text x="56" y="178" font-weight="700">utm_source</text>
+    <text x="56" y="200" fill="#5a6570">Where (newsletter)</text>
+    <rect x="250" y="150" width="190" height="70" rx="8" fill="#fff" stroke="#c9d2d8"/>
+    <text x="266" y="178" font-weight="700">utm_medium</text>
+    <text x="266" y="200" fill="#5a6570">Mechanism (email)</text>
+    <rect x="460" y="150" width="220" height="70" rx="8" fill="#fff" stroke="#c9d2d8"/>
+    <text x="476" y="178" font-weight="700">utm_campaign</text>
+    <text x="476" y="200" fill="#5a6570">Name (spring)</text>
+    <text x="40" y="260" fill="#5a6570">Preserve query params through redirects  or campaign data becomes Direct/Referral noise.</text>
+  </g>
+</svg>

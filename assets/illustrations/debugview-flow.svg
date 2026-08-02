@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-label="DebugView flow">
+  <rect width="720" height="240" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia,serif" font-size="20" fill="#1c2430">DebugView loop</text>
+  <rect x="40" y="80" width="180" height="100" rx="12" fill="#fff6e8" stroke="#c5d4d8"/><text x="130" y="125" text-anchor="middle" font-weight="700" font-family="system-ui" fill="#1c2430">Trigger event</text><text x="130" y="150" text-anchor="middle" font-size="13" font-family="system-ui" fill="#5a6570">on test device</text>
+  <rect x="270" y="80" width="180" height="100" rx="12" fill="#e8f3f4" stroke="#2a7a82"/><text x="360" y="125" text-anchor="middle" font-weight="700" font-family="system-ui" fill="#1c2430">DebugView</text><text x="360" y="150" text-anchor="middle" font-size="13" font-family="system-ui" fill="#5a6570">inspect params</text>
+  <rect x="500" y="80" width="180" height="100" rx="12" fill="#2a7a82"/><text x="590" y="125" text-anchor="middle" font-weight="700" font-family="system-ui" fill="#fff">Fix &amp; retest</text><text x="590" y="150" text-anchor="middle" font-size="13" font-family="system-ui" fill="#c8dfe2">then go live</text>
+</svg>

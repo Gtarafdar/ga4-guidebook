@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Voice and AI settings for GA4 Desk. Keys stay in your browser only.">
+  <link rel="canonical" href="https://gtarafdar.github.io/ga4-guidebook/settings/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtarafdar.github.io/ga4-guidebook/settings/">
+  <meta property="og:title" content="Settings — GA4 Desk">
+  <meta property="og:description" content="Voice and AI settings for GA4 Desk. Keys stay in your browser only.">
+  <meta property="og:image" content="https://gtarafdar.github.io/ga4-guidebook/assets/brand/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <title>Settings — GA4 Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css?v=20260802p">
+</head>
+<body>
+  <header class="site-header" id="siteHeader"></header>
+  <main class="page">
+    <div class="wrap settings-page">
+      <p class="kicker">Settings</p>
+      <h1 class="page-title">Voice, AI &amp; device prefs</h1>
+      <p class="page-lede">Everything here stays in <strong>this browser only</strong>. Nothing is uploaded to our servers — keys go only to the providers you enable (ElevenLabs / OpenRouter).</p>
+
+      <div class="settings-layout">
+        <section class="card settings-card" id="voice">
+          <h2>Read-aloud / Voice</h2>
+          <p class="settings-card-lead">Used by <strong>Play</strong> on Course and Resources lessons. Hear a short sample before you save — pick the voice that feels clearest to you.</p>
+          <label for="brVoice">Browser voice (curated English)</label>
+          <select class="select-input" id="brVoice"></select>
+          <p class="hint" style="margin-top:6px">Odd / novelty / robotic system voices are hidden. List shows clearer English options (Natural, Neural, Google, etc.).</p>
+          <div class="toolbar voice-preview-row">
+            <button type="button" class="btn btn-secondary btn-sm" id="previewBrowser">Hear browser voice</button>
+          </div>
+          <label for="brRate">Speed</label>
+          <input class="text-input" id="brRate" type="number" min="0.75" max="1.35" step="0.05" value="1">
+          <label class="settings-check"><input type="checkbox" id="elEnabled"> Prefer ElevenLabs when a key is set</label>
+          <label for="elKey">ElevenLabs API key</label>
+          <input class="text-input" id="elKey" type="password" placeholder="xi-…">
+          <label for="elVoice">ElevenLabs voice</label>
+          <select class="select-input" id="elVoice"></select>
+          <div class="toolbar voice-preview-row">
+            <button type="button" class="btn btn-secondary btn-sm" id="previewEleven">Hear ElevenLabs voice</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="stopPreview">Stop preview</button>
+          </div>
+          <p class="voice-preview-status" id="previewStatus" aria-live="polite"></p>
+          <div class="toolbar" style="margin-top:12px">
+            <button type="button" class="btn btn-primary btn-sm" id="saveVoice">Save voice settings</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="refreshEl">Refresh EL voices</button>
+            <a class="btn btn-secondary btn-sm" href="../course/index.html">Back to Course</a>
+          </div>
+          <p class="hint">Browser previews are free. ElevenLabs preview uses your key once per unique sample (then cached on this device). Saving is separate — preview never overwrites your saved choice until you click Save.</p>
+        </section>
+
+        <section class="card settings-card" id="ai">
+          <h2>AI Coach (optional)</h2>
+          <p class="settings-card-lead">Powers <strong>Ask AI</strong> on the <a href="../coach/index.html">Coach</a> page. Local search works without a key.</p>
+          <label class="settings-check"><input type="checkbox" id="orEnabled"> Enable OpenRouter AI</label>
+          <label for="orKey">OpenRouter API key</label>
+          <input class="text-input" id="orKey" type="password" placeholder="sk-or-…">
+          <label for="orModel">Text model</label>
+          <input class="text-input" id="orModel" placeholder="openai/gpt-4o-mini">
+          <label for="orVision">Vision model (screenshots)</label>
+          <input class="text-input" id="orVision" placeholder="openai/gpt-4o-mini">
+          <div class="toolbar" style="margin-top:12px">
+            <button type="button" class="btn btn-primary btn-sm" id="saveAi">Save AI settings</button>
+            <a class="btn btn-secondary btn-sm" href="../coach/index.html">Open Coach</a>
+          </div>
+          <p class="hint">Key is sent only to OpenRouter when you click Ask AI. Prefer free OpenRouter models to keep cost near zero.</p>
+        </section>
+      </div>
+
+      <section class="card settings-card" style="margin-top:16px">
+        <h2>Where to find controls while learning</h2>
+        <ul class="settings-find-list">
+          <li><strong>Voice Play / Pause / highlight</strong> — Course or Resources → open a lesson → controls under the chapter title</li>
+          <li><strong>Voice settings</strong> — on that player bar, or this Settings page</li>
+          <li><strong>AI chat</strong> — top nav <a href="../coach/index.html">Coach</a>, or “Ask coach about this” on a lesson</li>
+          <li><strong>This Settings page</strong> — always in the top nav as <strong>Settings</strong></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer" id="siteFooter"></footer>
+  <script src="../js/app.js?v=20260802p"></script>
+  <script src="../js/tts.js?v=20260802p"></script>
+  <script src="../js/coach.js?v=20260802p"></script>
+  <script>
+    GA4.renderHeader('settings');
+    GA4.renderFooter();
+
+    const previewStatus = document.getElementById('previewStatus');
+
+    function loadVoice() {
+      GA4TTS.bindSettingsForm({
+        enabledEl: document.getElementById('elEnabled'),
+        keyEl: document.getElementById('elKey'),
+        voiceEl: document.getElementById('elVoice'),
+        browserEl: document.getElementById('brVoice'),
+        rateEl: document.getElementById('brRate')
+      });
+    }
+
+    function loadAi() {
+      const s = GA4Coach.settings();
+      document.getElementById('orEnabled').checked = s.enabled;
+      document.getElementById('orKey').value = s.key;
+      document.getElementById('orModel').value = s.model;
+      document.getElementById('orVision').value = s.visionModel;
+    }
+
+    loadVoice();
+    loadAi();
+
+    async function runPreview(engine) {
+      const rate = parseFloat(document.getElementById('brRate').value) || 1;
+      previewStatus.textContent =
+        engine === 'eleven' ? 'Playing ElevenLabs sample…' : 'Playing browser sample…';
+      try {
+        const mode = await GA4TTS.previewVoice({
+          engine,
+          browserVoice: document.getElementById('brVoice').value,
+          rate,
+          key: document.getElementById('elKey').value.trim(),
+          voiceId: document.getElementById('elVoice').value || '21m00Tcm4TlvDq8ikWAM'
+        });
+        if (mode === 'stopped') previewStatus.textContent = 'Preview stopped.';
+        else previewStatus.textContent = 'Sample finished. Save if you want to keep this voice.';
+      } catch (e) {
+        previewStatus.textContent = 'Preview failed: ' + (e && e.message ? e.message : e);
+      }
+    }
+
+    document.getElementById('previewBrowser').onclick = () => runPreview('browser');
+    document.getElementById('previewEleven').onclick = () => runPreview('eleven');
+    document.getElementById('stopPreview').onclick = () => {
+      GA4TTS.stop();
+      previewStatus.textContent = 'Preview stopped.';
+    };
+
+    document.getElementById('saveVoice').onclick = () => {
+      GA4TTS.saveSettings({
+        enabled: document.getElementById('elEnabled').checked,
+        key: document.getElementById('elKey').value.trim(),
+        voiceId: document.getElementById('elVoice').value.trim() || '21m00Tcm4TlvDq8ikWAM',
+        browserVoice: document.getElementById('brVoice').value,
+        rate: parseFloat(document.getElementById('brRate').value) || 1
+      });
+      previewStatus.textContent = 'Voice settings saved on this device.';
+    };
+    document.getElementById('refreshEl').onclick = () => {
+      GA4TTS.saveSettings({
+        key: document.getElementById('elKey').value.trim(),
+        enabled: document.getElementById('elEnabled').checked
+      });
+      loadVoice();
+      previewStatus.textContent = 'ElevenLabs voice list refreshed.';
+    };
+    document.getElementById('saveAi').onclick = () => {
+      GA4Coach.saveSettings({
+        enabled: document.getElementById('orEnabled').checked,
+        key: document.getElementById('orKey').value.trim(),
+        model: document.getElementById('orModel').value.trim() || 'openai/gpt-4o-mini',
+        visionModel: document.getElementById('orVision').value.trim() || 'openai/gpt-4o-mini'
+      });
+      alert('AI settings saved on this device.');
+    };
+  </script>
+</body>
+</html>

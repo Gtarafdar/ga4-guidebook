@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-label="Scope nesting user session event">
+  <rect width="720" height="320" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="20" fill="#1c2430">Scopes nesting (educational)</text>
+  <rect x="48" y="70" width="624" height="210" rx="14" fill="#e8f3f4" stroke="#2a7a82" stroke-width="2"/>
+  <text x="68" y="98" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1c2430">User</text>
+  <text x="68" y="118" font-family="system-ui,sans-serif" font-size="12" fill="#5a6570">user_id · membership_tier (durable traits)</text>
+  <rect x="80" y="140" width="560" height="120" rx="12" fill="#fff" stroke="#2a7a82"/>
+  <text x="100" y="168" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1c2430">Session</text>
+  <text x="100" y="188" font-family="system-ui,sans-serif" font-size="12" fill="#5a6570">session source / medium · campaign</text>
+  <rect x="112" y="204" width="496" height="40" rx="8" fill="#2a7a82"/>
+  <text x="130" y="229" font-family="system-ui,sans-serif" font-size="13" fill="#fff">Event  page_location · value · item params</text>
+</svg>

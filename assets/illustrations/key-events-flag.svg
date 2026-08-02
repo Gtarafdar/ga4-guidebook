@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-label="Key event flag">
+  <rect width="720" height="280" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="20" fill="#1c2430">Key event flag (educational)</text>
+  <rect x="60" y="80" width="280" height="120" rx="12" fill="#fff" stroke="#c9d2d8"/>
+  <text x="80" y="120" font-family="system-ui,sans-serif" font-size="16" fill="#1c2430">Event: purchase</text>
+  <text x="80" y="148" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Already collected via tag / ecommerce</text>
+  <path d="M360 140 H420" stroke="#2a7a82" stroke-width="3"/>
+  <polygon points="420,130 440,140 420,150" fill="#2a7a82"/>
+  <rect x="450" y="80" width="220" height="120" rx="12" fill="#d7eef0" stroke="#2a7a82" stroke-width="2"/>
+  <text x="470" y="120" font-family="system-ui,sans-serif" font-size="16" fill="#1c2430"> Key event</text>
+  <text x="470" y="148" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Same event · conversion flag</text>
+  <text x="60" y="240" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Marking key does not invent tracking  it flags an outcome you already measure.</text>
+</svg>

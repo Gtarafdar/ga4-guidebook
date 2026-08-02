@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Consent mode fidelity">
+  <rect width="720" height="300" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="20" fill="#1c2430">Consent Mode fidelity (educational)</text>
+  <rect x="48" y="70" width="280" height="160" rx="12" fill="#d7eef0" stroke="#2a7a82"/>
+  <text x="68" y="106" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1c2430">Granted</text>
+  <text x="68" y="136" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">Fuller cookie / storage behavior</text>
+  <text x="68" y="160" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">Higher-fidelity observed data</text>
+  <text x="68" y="184" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">(still follow your policy)</text>
+  <rect x="392" y="70" width="280" height="160" rx="12" fill="#fff" stroke="#c9d2d8"/>
+  <text x="412" y="106" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1c2430">Denied</text>
+  <text x="412" y="136" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">Reduced fidelity / cookieless pings</text>
+  <text x="412" y="160" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">More reliance on modeled gaps</text>
+  <text x="412" y="184" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Not GA deleted itself</text>
+  <text x="48" y="270" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Wire CMP ’ Consent Mode signals, then verify grant/deny in DebugView.</text>
+</svg>

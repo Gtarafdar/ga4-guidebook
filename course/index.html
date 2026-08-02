@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guided GA4 course with 70% gate quizzes and an 80% rehearsal exam. Free guidebook desk — not official Google certification.">
+  <link rel="canonical" href="https://gtarafdar.github.io/ga4-guidebook/course/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtarafdar.github.io/ga4-guidebook/course/">
+  <meta property="og:title" content="Course — GA4 Desk">
+  <meta property="og:description" content="Guided GA4 course with 70% gate quizzes and an 80% rehearsal exam. Free guidebook desk — not official Google certification.">
+  <meta property="og:image" content="https://gtarafdar.github.io/ga4-guidebook/assets/brand/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <title>Course — GA4 Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css?v=20260802p">
+</head>
+<body class="course-page">
+  <header class="site-header site-header-app" id="siteHeader"></header>
+
+  <div class="course-app" id="courseApp">
+    <aside class="course-sidebar" id="courseSidebar" aria-label="Course chapters">
+      <div class="course-sidebar-top">
+        <div class="course-sidebar-top-row">
+          <div class="course-mode-chip">Course</div>
+          <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Hide chapters" aria-controls="courseSidebar" aria-expanded="true">
+            <span class="sidebar-collapse-ico" aria-hidden="true"></span>
+            <span class="sidebar-collapse-label">Hide</span>
+          </button>
+        </div>
+        <p class="course-rules">Gate <strong>70%</strong> unlocks next · Exam <strong>80%</strong> after all chapters</p>
+      </div>
+      <h2 class="course-side-label">Chapters</h2>
+      <div class="course-nav-scroll" id="topicNav"></div>
+      <div class="course-sidebar-foot">
+        <div id="lmsStats"></div>
+        <details class="exam-acc" id="examAccordion">
+          <summary class="exam-acc-summary">
+            <span class="exam-acc-title">Final timed exam</span>
+            <span class="exam-acc-badge is-locked" id="examLockBadge">Locked</span>
+          </summary>
+          <div class="exam-acc-body">
+            <p class="exam-acc-lead">A rehearsal exam after you clear every chapter gate — not Google’s real certification.</p>
+            <ul class="exam-acc-list">
+              <li><strong>40 questions</strong> drawn from the practice bank</li>
+              <li><strong>40 minutes</strong> timed</li>
+              <li><strong>80% to pass</strong></li>
+              <li>Unlocks only when <strong>all 23 gates</strong> are passed at 70%+</li>
+            </ul>
+            <div class="exam-acc-meter">
+              <div class="exam-acc-meter-label"><span>Gates toward exam</span><strong id="examGateCount">0 / 23</strong></div>
+              <div class="exam-acc-meter-bar"><span id="examGateFill"></span></div>
+            </div>
+            <p class="exam-acc-hint" id="examAccHint">Pass chapter gates to unlock this exam.</p>
+            <button type="button" class="btn btn-primary btn-sm" id="examBtn">Open exam lobby</button>
+          </div>
+        </details>
+        <div class="course-side-actions">
+          <a class="btn btn-ghost btn-sm" href="../academy/index.html">Academy</a>
+          <a class="btn btn-ghost btn-sm" href="../coach/index.html">Coach</a>
+          <a class="btn btn-ghost btn-sm" href="../resources/index.html">Resources</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="course-main">
+      <div class="course-toolbar">
+        <div class="course-toolbar-left">
+          <div class="course-toolbar-flow" aria-hidden="true">
+            <span>Learn</span><span class="path-arrow">→</span>
+            <span>Gate</span><span class="path-arrow">→</span>
+            <span>Unlock</span><span class="path-arrow">→</span>
+            <span>Exam</span>
+          </div>
+        </div>
+        <p class="course-toolbar-hint">Same material as Resources — progress only saves here.</p>
+      </div>
+      <div class="course-scroll">
+        <div class="course-lesson" id="lessonCard">
+          <p style="color:var(--muted)">Loading lessons…</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <button type="button" class="sidebar-edge-reopen" id="sidebarEdgeReopen" hidden aria-controls="courseSidebar" aria-label="Show chapters sidebar">
+    Chapters
+  </button>
+
+  <div id="examOverlay" class="exam-overlay hidden">
+    <div class="card exam-modal">
+      <div id="examIntro">
+        <h2 style="margin-top:0;font-family:var(--font-display)">Timed practice exam</h2>
+        <p id="examIntroCopy">40 questions · 40 minutes · 80% to pass. Unlocks after all chapter gates are passed.</p>
+        <button type="button" class="btn btn-primary" id="examStart">Start exam</button>
+        <button type="button" class="btn btn-ghost" id="examClose">Close</button>
+      </div>
+      <div id="examActive" class="hidden">
+        <div class="toolbar"><strong id="examTimer">40:00</strong><span id="examMeta"></span></div>
+        <div id="examQ"></div>
+        <div class="toolbar">
+          <button type="button" class="btn btn-secondary btn-sm" id="examPrev">Previous</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="examNext">Next</button>
+          <button type="button" class="btn btn-primary btn-sm" id="examSubmit">Submit</button>
+        </div>
+      </div>
+      <div id="examResult" class="hidden"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer course-footer-hidden" id="siteFooter" hidden></footer>
+  <script src="../js/app.js?v=20260802p"></script>
+  <script src="../js/tts.js?v=20260802p"></script>
+  <script src="../js/lightbox.js?v=20260802p"></script>
+  <script src="../js/diagrams-animate.js?v=20260802p"></script>
+  <script src="../js/render.js?v=20260802p"></script>
+  <script src="../js/course.js?v=20260802p"></script>
+  <script>
+    GA4.renderHeader('course');
+    /* App shell: no landing footer */
+
+    let topics = [];
+    let meta = {};
+    let gates = {};
+    let stories = {};
+    let currentId = null;
+    let quizScore = { correct: 0, total: 0 };
+
+    function topicIds() { return topics.map((t) => t.id); }
+
+    function updateProgressUI() {
+      const ids = topicIds();
+      const prevAcc = document.getElementById('progressAccordion');
+      const keepOpen = prevAcc ? prevAcc.open : false;
+      const panel = GA4Course.renderProgressPanel(ids, topics);
+      document.getElementById('lmsStats').innerHTML = panel.html;
+      const nextAcc = document.getElementById('progressAccordion');
+      if (nextAcc && keepOpen) nextAcc.open = true;
+
+      const badge = document.getElementById('examLockBadge');
+      const hint = document.getElementById('examAccHint');
+      const gateCount = document.getElementById('examGateCount');
+      const gateFill = document.getElementById('examGateFill');
+      const examBtn = document.getElementById('examBtn');
+      if (gateCount) gateCount.textContent = `${panel.passed.n} / ${panel.passed.total}`;
+      if (gateFill) gateFill.style.width = panel.passed.pct + '%';
+      if (badge) {
+        badge.textContent = panel.examReady ? 'Unlocked' : 'Locked';
+        badge.classList.toggle('is-locked', !panel.examReady);
+        badge.classList.toggle('is-open', !!panel.examReady);
+      }
+      if (hint) {
+        hint.textContent = panel.examReady
+          ? 'All gates cleared — open the lobby to start the 40-minute rehearsal.'
+          : `${panel.passed.total - panel.passed.n} gate${panel.passed.total - panel.passed.n === 1 ? '' : 's'} left before the exam unlocks.`;
+      }
+      if (examBtn) {
+        examBtn.textContent = panel.examReady ? 'Start exam lobby' : 'View exam requirements';
+        examBtn.classList.toggle('btn-primary', true);
+      }
+    }
+
+    /* Sidebar collapse — persists for this browser */
+    const SIDEBAR_KEY = 'ga4lms_course_sidebar_v1';
+    const courseApp = document.getElementById('courseApp');
+    const collapseBtn = document.getElementById('sidebarCollapseBtn');
+    const edgeBtn = document.getElementById('sidebarEdgeReopen');
+
+    function setSidebarCollapsed(collapsed) {
+      document.body.classList.toggle('course-sidebar-collapsed', collapsed);
+      if (courseApp) courseApp.classList.toggle('is-sidebar-collapsed', collapsed);
+      if (collapseBtn) {
+        collapseBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        collapseBtn.title = collapsed ? 'Show chapters' : 'Hide chapters';
+      }
+      if (edgeBtn) {
+        edgeBtn.hidden = !collapsed;
+        edgeBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      }
+      try {
+        localStorage.setItem(SIDEBAR_KEY, collapsed ? '0' : '1');
+      } catch (e) { /* ignore */ }
+    }
+
+    function initSidebar() {
+      let open = true;
+      try {
+        open = localStorage.getItem(SIDEBAR_KEY) !== '0';
+      } catch (e) { /* ignore */ }
+      setSidebarCollapsed(!open);
+    }
+
+    if (collapseBtn) collapseBtn.addEventListener('click', () => setSidebarCollapsed(true));
+    if (edgeBtn) edgeBtn.addEventListener('click', () => setSidebarCollapsed(false));
+    initSidebar();
+
+    function renderNav() {
+      const host = document.getElementById('topicNav');
+      host.innerHTML = '';
+      host.appendChild(GA4Course.renderNavList(topics, currentId, openTopic));
+    }
+
+    function openTopic(id, opts) {
+      const ids = topicIds();
+      const idx = topics.findIndex((x) => x.id === id);
+      const t = topics[idx];
+      if (!t) return;
+      const st = GA4.chapterStatus(id, idx, ids);
+      if (st === 'locked') {
+        alert('Pass the previous chapter’s Gate Quiz (70%) to unlock this chapter.');
+        return;
+      }
+      currentId = id;
+      location.hash = id;
+      GA4.markVisited(id);
+      updateProgressUI();
+      renderNav();
+      const scroller = document.querySelector('.course-scroll');
+      if (scroller) scroller.scrollTop = 0;
+
+      const ch = (GA4.getProgress().chapters || {})[id] || {};
+      const statusLabel = GA4Course.statusMeta(st).label;
+      const card = document.getElementById('lessonCard');
+      card.innerHTML = `
+        <div class="chapter-num">Chapter ${idx + 1} of ${topics.length} · <span class="chapter-state">${GA4.escapeHtml(statusLabel)}</span></div>
+        <h1 class="lesson-title">${GA4.escapeHtml(t.title)}</h1>
+        <div class="toolbar">
+          <div id="ttsMount"></div>
+          <a class="btn btn-ghost btn-sm" href="../settings/index.html#voice">All voice settings</a>
+          <a class="btn btn-ghost btn-sm" href="../coach/index.html">Ask coach about this</a>
+        </div>
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab-btn active" data-tab="learn" role="tab">Learn</button>
+          <button type="button" class="tab-btn" data-tab="practice" role="tab">Practice (${t.questions.length})</button>
+          <button type="button" class="tab-btn" data-tab="gate" role="tab">Gate (required)</button>
+        </div>
+        <div class="tab-pane active" data-pane="learn"></div>
+        <div class="tab-pane" data-pane="practice" id="practicePane"></div>
+        <div class="tab-pane" data-pane="gate" id="gatePane"></div>`;
+
+      const learnPane = card.querySelector('[data-pane="learn"]');
+      learnPane.innerHTML = GA4Render.renderLearn(t, { story: stories[id] });
+      GA4Render.bindSimulations(learnPane);
+      if (window.GA4Diagrams) GA4Diagrams.bind(learnPane);
+      if (window.GA4Lightbox) GA4Lightbox.bind(learnPane);
+
+      GA4TTS.mountControls(document.getElementById('ttsMount'), () => GA4Render.listenText(t, stories[id]));
+
+      function activateTab(name) {
+        const btn = card.querySelector(`[data-tab="${name}"]`);
+        if (!btn) return;
+        card.querySelectorAll('.tab-btn').forEach((b) => b.classList.toggle('active', b === btn));
+        card.querySelectorAll('.tab-pane').forEach((p) => p.classList.toggle('active', p.dataset.pane === name));
+        const scroller = document.querySelector('.course-scroll');
+        if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      card.querySelectorAll('.tab-btn').forEach((btn) => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
+      learnPane.querySelectorAll('[data-jump-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => activateTab(btn.getAttribute('data-jump-tab')));
+      });
+
+      const practice = document.getElementById('practicePane');
+      practice.appendChild(GA4Render.renderPractice(t, (ok) => {
+        quizScore.total++;
+        if (ok) quizScore.correct++;
+      }));
+
+      const gatePane = document.getElementById('gatePane');
+      if (ch.status === 'passed') {
+        gatePane.innerHTML = `<div class="result-card result-pass"><h3>Gate already passed</h3><p>Best score ${ch.gateBest == null ? '—' : ch.gateBest + '%'}. You can still retry for practice.</p></div>`;
+      }
+      gatePane.appendChild(GA4Course.renderGateQuiz(t, gates[id], (result) => {
+        updateProgressUI();
+        renderNav();
+        if (result.advance && result.passed) {
+          const next = topics[idx + 1];
+          if (next) openTopic(next.id);
+        } else if (result.passed) {
+          openTopic(id);
+          card.querySelector('[data-tab="gate"]').click();
+        }
+      }));
+
+      if (opts && opts.tab) activateTab(opts.tab);
+    }
+
+    let exam = null;
+    let examTimer = null;
+    const overlay = document.getElementById('examOverlay');
+
+    function showExamIntro() {
+      const unlocked = GA4.allChaptersPassed(topicIds());
+      const copy = document.getElementById('examIntroCopy');
+      const start = document.getElementById('examStart');
+      const examBtn = document.getElementById('examBtn');
+      const acc = document.getElementById('examAccordion');
+      if (acc && !acc.open) acc.open = true;
+      if (!unlocked) {
+        // Stay in accordion — don’t open a locked lobby
+        return;
+      }
+      copy.textContent = '40 questions · 40 minutes · 80% to pass. Not the real certification — a rehearsal from the practice bank.';
+      start.disabled = false;
+      start.textContent = 'Start exam';
+      start.removeAttribute('aria-disabled');
+      if (examBtn) examBtn.removeAttribute('aria-description');
+      overlay.classList.remove('hidden');
+      document.getElementById('examIntro').classList.remove('hidden');
+      document.getElementById('examActive').classList.add('hidden');
+      document.getElementById('examResult').classList.add('hidden');
+    }
+
+    document.getElementById('examBtn').onclick = showExamIntro;
+    document.getElementById('examClose').onclick = () => { overlay.classList.add('hidden'); clearInterval(examTimer); };
+    document.getElementById('examStart').onclick = startExam;
+
+    function startExam() {
+      if (!GA4.allChaptersPassed(topicIds())) {
+        alert(GA4Course.examBlockedMessage(topicIds()));
+        return;
+      }
+      const pool = topics.flatMap((t) => t.questions.map((q) => ({ ...q, topic: t.title, options: q.o.map((text, i) => ({ text, i })) })));
+      for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+      const n = Math.min((meta.exam && meta.exam.numQuestions) || 40, pool.length);
+      const qs = pool.slice(0, n).map((q) => {
+        const opts = [...q.options];
+        for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [opts[i], opts[j]] = [opts[j], opts[i]]; }
+        return { q: q.q, e: q.e, topic: q.topic, options: opts, correctIdx: opts.findIndex((o) => o.i === q.c) };
+      });
+      exam = { qs, idx: 0, answers: Array(qs.length).fill(null), remaining: ((meta.exam && meta.exam.timeLimitMin) || 40) * 60 };
+      document.getElementById('examIntro').classList.add('hidden');
+      document.getElementById('examActive').classList.remove('hidden');
+      document.getElementById('examResult').classList.add('hidden');
+      clearInterval(examTimer);
+      examTimer = setInterval(() => {
+        exam.remaining--;
+        const m = Math.floor(exam.remaining / 60), s = exam.remaining % 60;
+        document.getElementById('examTimer').textContent = `${m}:${String(s).padStart(2, '0')}`;
+        if (exam.remaining <= 0) submitExam();
+      }, 1000);
+      renderExamQ();
+    }
+
+    function renderExamQ() {
+      const q = exam.qs[exam.idx];
+      document.getElementById('examMeta').textContent = `Question ${exam.idx + 1} of ${exam.qs.length} · ${q.topic}`;
+      const box = document.getElementById('examQ');
+      box.innerHTML = `<div class="qtext">${GA4.escapeHtml(q.q)}</div><div class="options"></div>`;
+      const opts = box.querySelector('.options');
+      q.options.forEach((o, i) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'opt' + (exam.answers[exam.idx] === i ? ' correct' : '');
+        b.textContent = o.text;
+        b.onclick = () => { exam.answers[exam.idx] = i; renderExamQ(); };
+        opts.appendChild(b);
+      });
+    }
+    document.getElementById('examPrev').onclick = () => { if (exam.idx > 0) { exam.idx--; renderExamQ(); } };
+    document.getElementById('examNext').onclick = () => { if (exam.idx < exam.qs.length - 1) { exam.idx++; renderExamQ(); } };
+    document.getElementById('examSubmit').onclick = submitExam;
+    function submitExam() {
+      clearInterval(examTimer);
+      let correct = 0;
+      exam.qs.forEach((q, i) => { if (exam.answers[i] === q.correctIdx) correct++; });
+      const pct = Math.round((correct / exam.qs.length) * 100);
+      const pass = pct >= ((meta.exam && meta.exam.passPercent) || GA4.EXAM_PASS);
+      GA4.recordExam(pct, pass);
+      updateProgressUI();
+      document.getElementById('examActive').classList.add('hidden');
+      const res = document.getElementById('examResult');
+      res.classList.remove('hidden');
+      res.innerHTML = `<div class="result-card ${pass ? 'result-pass' : 'result-fail'}">
+        <h2 style="font-family:var(--font-display);margin-top:0">${pass ? 'Exam passed' : 'Keep practicing'}</h2>
+        <p>${correct} / ${exam.qs.length} correct (${pct}%). Pass mark 80%.</p>
+        <p>${pass ? 'Nice work — revisit Resources or Academy to deepen weak topics.' : 'Review chapter gates and Practice drills, then retry the exam.'}</p>
+        <button type="button" class="btn btn-secondary" id="examDone">Close</button>
+      </div>`;
+      document.getElementById('examDone').onclick = () => { overlay.classList.add('hidden'); };
+    }
+
+    Promise.all([
+      GA4.loadJSON('data/topics.json'),
+      GA4.loadJSON('data/meta.json'),
+      GA4.loadJSON('data/diagrams.json'),
+      GA4.loadJSON('data/gates.json'),
+      GA4.loadJSON('data/stories.json').catch(() => ({})),
+      GA4.loadJSON('data/simulations.json').catch(() => ({}))
+    ]).then(([t, m, diagrams, g, st, sims]) => {
+      topics = t; meta = m; gates = g; stories = st || {};
+      GA4Render.setMedia({
+        diagrams,
+        videos: m.videos || {},
+        playlistUrl: m.playlistUrl,
+        videoHubUrl: m.videoHubUrl,
+        simulations: sims || {},
+        illustrations: m.illustrations || {},
+        scenarios: m.scenarios || {}
+      });
+      updateProgressUI();
+      const start = (location.hash || '').replace(/^#/, '');
+      const ids = topicIds();
+      let openId = topics[0].id;
+      if (start && topics.some((x) => x.id === start)) {
+        const i = ids.indexOf(start);
+        if (GA4.chapterStatus(start, i, ids) !== 'locked') openId = start;
+      }
+      openTopic(openId);
+    }).catch((e) => {
+      document.getElementById('lessonCard').innerHTML = `<p>Could not load topics. ${GA4.escapeHtml(e.message)}</p>`;
+    });
+  </script>
+</body>
+</html>

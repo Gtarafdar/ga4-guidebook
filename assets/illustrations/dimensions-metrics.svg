@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" role="img" aria-label="Dimensions versus metrics">
+  <rect width="720" height="260" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="20" fill="#1c2430">Dimensions vs metrics (educational)</text>
+  <rect x="48" y="70" width="280" height="130" rx="12" fill="#fff" stroke="#c9d2d8"/>
+  <text x="68" y="110" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1c2430">Dimension</text>
+  <text x="68" y="140" font-family="system-ui,sans-serif" font-size="14" fill="#5a6570">A label  City, Item name,</text>
+  <text x="68" y="162" font-family="system-ui,sans-serif" font-size="14" fill="#5a6570">Session source</text>
+  <rect x="392" y="70" width="280" height="130" rx="12" fill="#d7eef0" stroke="#2a7a82"/>
+  <text x="412" y="110" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1c2430">Metric</text>
+  <text x="412" y="140" font-family="system-ui,sans-serif" font-size="14" fill="#1c2430">A number  Sessions,</text>
+  <text x="412" y="162" font-family="system-ui,sans-serif" font-size="14" fill="#1c2430">Purchases, Revenue</text>
+</svg>

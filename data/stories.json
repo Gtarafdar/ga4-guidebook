@@ -1,0 +1,117 @@
+{
+  "structure": {
+    "problem": "Acme Retail\u2019s CMO wants one dashboard for the Shopify site and the new iOS app. Two agencies propose two separate GA4 Accounts so \u2018nobody messes up the other platform.\u2019",
+    "solution": "Create one Account \u2192 one Property \u2192 web + iOS (+ Android later) data streams. Share key events and explorations in that property. Use access roles if agency separation is the real worry.",
+    "takeaway": "Unify platforms in one property when they are one business; use permissions\u2014not duplicate accounts\u2014for access control."
+  },
+  "dimensions-metrics": {
+    "problem": "A PM builds a Looker Board mixing \u2018Item name\u2019 next to \u2018Sessions\u2019 and insists the totals \u2018must match Ads.\u2019 Numbers look chaotic in the meeting.",
+    "solution": "Separate labels (dimensions) from counts (metrics). Rebuild the view as Item name \u00d7 Item views / purchases, and keep session metrics in a session-scoped report.",
+    "takeaway": "Every trustworthy chart starts by naming what is a dimension vs a metric\u2014and respecting scope."
+  },
+  "key-events": {
+    "problem": "Paid media asks to \u2018turn on conversions\u2019 for newsletter_signup, but the event never appears in Admin \u2192 Events.",
+    "solution": "Implement/collect the event first (GTM or gtag), verify in DebugView, then mark it as a key event. Only then link/import to Ads if needed.",
+    "takeaway": "A key event is a flag on an event that already exists\u2014not a substitute for tracking."
+  },
+  "reports": {
+    "problem": "After a Friday deploy, leadership says \u2018GA4 is broken\u2019 because Life cycle reports still look empty an hour later.",
+    "solution": "Open Realtime (and DebugView on a test device) to confirm hits. Explain standard report latency. Keep the deploy rollback decision tied to Realtime proof, not overnight reports.",
+    "takeaway": "Realtime confirms collection; standard reports can lag\u2014don\u2019t declare failure from the wrong screen."
+  },
+  "explore": {
+    "problem": "Analysts keep rebuilding the same \u2018purchasers in last 14 days\u2019 filter inside every Explore, and Ads wants that list for remarketing.",
+    "solution": "Use a Segment for one-off analysis. Publish an Audience when the set must be reusable or shared with linked Google Ads.",
+    "takeaway": "Segments analyze; audiences activate."
+  },
+  "scopes": {
+    "problem": "A custom dimension \u2018membership_tier\u2019 was registered as Event-scoped but the app sets it once as a user property. Explore shows mostly \u2018(not set)\u2019.",
+    "solution": "Align registration scope with how the value is sent. Prefer a user-scoped custom dimension / user property for durable membership tier.",
+    "takeaway": "Wrong scope is one of the most common sources of \u2018GA4 is lying\u2019 meetings."
+  },
+  "attribution": {
+    "problem": "Brand search looks heroic under last-click; Paid Social looks useless. Social wants budget restored.",
+    "solution": "Show the same conversions under Data-Driven (or model comparison) and discuss assisted paths and lookback windows. Don\u2019t debate budgets from a single last-click export.",
+    "takeaway": "Always name the attribution model when you tell a budget story."
+  },
+  "campaign-tracking": {
+    "problem": "A partner QR code \u2018should be campaign-tagged\u2019 but GA4 shows Direct spikes when people scan it.",
+    "solution": "Inspect the redirect chain\u2014query parameters were stripped. Fix the redirect to preserve UTMs (or use a tagged short link that keeps them).",
+    "takeaway": "UTMs only work if they survive every hop to the landing page."
+  },
+  "advertising": {
+    "problem": "Finance compares Google Ads UI conversions to GA4 Advertising and declares one tool wrong.",
+    "solution": "Reconcile definitions: conversion actions, attribution windows, click vs view, timezone, and linking status. Expect differences; hunt mismatches, don\u2019t force equality.",
+    "takeaway": "Cross-platform totals rarely match 1:1\u2014align definitions before aligning opinions."
+  },
+  "governance": {
+    "problem": "Office Wi\u2011Fi and a payment gateway inflate sessions and referrals before Black Friday reporting.",
+    "solution": "Define internal traffic rules and unwanted referral exclusions, document owners, and note that filters are not retroactive for past weeks.",
+    "takeaway": "Governance is configuration plus ownership\u2014not a one-time checkbox."
+  },
+  "bigquery-api": {
+    "problem": "Explore samples on a huge date range; the data science team needs item-level joins for a margin model.",
+    "solution": "Enable BigQuery export and query events there. Use the Data API for lighter scheduled report pulls; Measurement Protocol only for true server/offline hits.",
+    "takeaway": "Pick the pipe for the job: UI, Data API, or BigQuery\u2014not one tool for everything."
+  },
+  "ga360": {
+    "problem": "Legal wants an EU-only analytics view, while the exec team wants one rollup across two brand properties.",
+    "solution": "Discuss 360 subproperty (filtered child of one source) vs roll-up (combine multiple sources). If not on 360, approximate with separate properties, BQ views, and strict access control.",
+    "takeaway": "Subproperty filters one source; roll-up combines many\u2014don\u2019t mix the words in stakeholder decks."
+  },
+  "consent": {
+    "problem": "After CMP launch, paid channels claim \u2018GA stopped\u2019 because observed conversions dropped.",
+    "solution": "Verify Consent Mode wiring in GTM/gtag, check granted vs denied behavior in DebugView, and explain modeled conversions / lower fidelity when consent is denied.",
+    "takeaway": "Consent changes fidelity\u2014measure the wiring before blaming the media mix."
+  },
+  "signalsads": {
+    "problem": "Someone enables Google Signals in a rush hoping for \u2018free cross-device magic,\u2019 then rows disappear due to thresholding.",
+    "solution": "Align with privacy/legal first. Enable Signals deliberately, teach User-ID as first-party identity for logins, and explain thresholds on small slices.",
+    "takeaway": "Signals are powerful and constrained\u2014enable with policy, not FOMO."
+  },
+  "setupassist": {
+    "problem": "A new hire trusts a green Setup Assistant checklist even though Realtime is empty after a tag change.",
+    "solution": "Treat Setup Assistant as a reminder list. Re-open it after new streams or Ads links, but always verify hits in Realtime/DebugView independently.",
+    "takeaway": "A checklist is not proof of collection."
+  },
+  "eventparams": {
+    "problem": "The team invented 60 custom event names for clicks that already map to recommended events, and standard reports look sparse.",
+    "solution": "Prefer automatically collected \u2192 recommended \u2192 custom. Rename/consolidate where possible; register only the custom dimensions you truly need.",
+    "takeaway": "Fit Google\u2019s taxonomy before inventing your own dialect."
+  },
+  "enhanced-measurement": {
+    "problem": "Product enables every Enhanced Measurement toggle; form_start floods the property and key-event ideas get silly.",
+    "solution": "Disable noisy toggles, configure site-search params correctly, and implement true submit events in GTM when EM form events aren\u2019t enough.",
+    "takeaway": "Enhanced measurement is a starting kit\u2014not a reason to skip intentional tracking design."
+  },
+  "debugview": {
+    "problem": "QA says \u2018nothing in DebugView\u2019 after a GTM publish, while Realtime occasionally blips.",
+    "solution": "Enable debug mode on the test browser, confirm the GA4 tag fires to the correct Measurement ID in Preview, then inspect parameters in DebugView.",
+    "takeaway": "DebugView only sees debug-flagged traffic\u2014configure the test device on purpose."
+  },
+  "user-id": {
+    "problem": "CRM wants cross-device journeys and proposes sending email addresses as user_id.",
+    "solution": "Refuse PII. Emit a stable irreversible first-party ID after login, clear it on shared-device logout, and document the identity policy.",
+    "takeaway": "User-ID is first-party identity\u2014never raw personal data."
+  },
+  "cross-domain": {
+    "problem": "Sessions restart when users move from brand.com to checkout.partner.com, wrecking funnel reports.",
+    "solution": "Configure cross-domain measurement / linker for both domains, test client IDs across the hop, and review referral exclusions for the gateway.",
+    "takeaway": "Without linker setup, a domain hop often means a new session."
+  },
+  "predictive": {
+    "problem": "Growth asks for churn probability audiences on a two-week-old property with thin purchase volume.",
+    "solution": "Check eligibility prerequisites. If greyed out, wait for qualifying examples; don\u2019t invent fake scores in spreadsheets for Ads.",
+    "takeaway": "Predictive metrics appear only when the property earns them with data."
+  },
+  "channel-groups": {
+    "problem": "Paid Social lands in Referral because of sloppy UTMs; the channel meeting becomes a blame session.",
+    "solution": "Fix tagging conventions first, then adjust custom channel rules (mind first-match order) and set the Primary group intentionally.",
+    "takeaway": "Channel groups interpret tags\u2014they don\u2019t forgive chaotic UTMs."
+  },
+  "gtag-gtm": {
+    "problem": "Engineering hardcodes gtag; marketing installs a second GTM container \u2018just for pixels,\u2019 doubling page_view.",
+    "solution": "Pick an ownership model: either governed GTM as the system of record or documented gtag\u2014not both firing the same base hits. Deduplicate and add publish approvals.",
+    "takeaway": "Two install paths without governance means duplicate hits and duplicate arguments."
+  }
+}

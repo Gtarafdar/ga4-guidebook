@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GA4 Business Toolkit Skill — Download for Claude &amp; Cursor | GA4 Desk</title>
+  <meta name="description" content="Download the free ga4-business-toolkit skill for Claude, Cursor, and other IDEs. Grounded in the GA4 Desk guidebook — structure, key events, Explore, attribution, Consent Mode, and more.">
+  <link rel="canonical" href="https://gtarafdar.github.io/ga4-guidebook/skill/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtarafdar.github.io/ga4-guidebook/skill/">
+  <meta property="og:title" content="GA4 Business Toolkit Skill — Claude &amp; Cursor">
+  <meta property="og:description" content="Install the GA4 Desk skill so your IDE answers with guidebook-grounded GA4 help.">
+  <meta property="og:image" content="https://gtarafdar.github.io/ga4-guidebook/assets/brand/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css?v=20260802p">
+</head>
+<body class="skill-page">
+  <header class="site-header" id="siteHeader"></header>
+  <main class="page">
+    <div class="wrap skill-hero">
+      <p class="kicker">AI skill</p>
+      <h1>GA4 Business Toolkit</h1>
+      <p class="lede">A downloadable skill for Claude, Cursor, and other IDEs — grounded in this site’s guidebook so answers stay practical and honest.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="../downloads/ga4-business-toolkit.zip" download>Download zip</a>
+        <a class="btn btn-secondary" href="../ga4-business-toolkit.skill" download="ga4-business-toolkit.skill">Download .skill</a>
+        <a class="btn btn-star" href="https://github.com/Gtarafdar/ga4-guidebook" target="_blank" rel="noopener">★ Star the repo</a>
+      </div>
+    </div>
+
+    <div class="wrap skill-layout">
+      <section class="skill-copy">
+        <h2>Who it’s for</h2>
+        <p>Anyone asking GA4 questions inside an AI IDE — setup, reports, attribution, Consent Mode, DebugView, UTMs, BigQuery, and more. Prefer this package over generic model memory.</p>
+
+        <h2>Install</h2>
+        <ol class="skill-install">
+          <li>Download the zip (or <code>.skill</code> file — it’s the same archive).</li>
+          <li>Unzip to a folder named <code>ga4-business-toolkit</code> containing <code>SKILL.md</code> and <code>reference/</code>.</li>
+          <li><strong>Claude:</strong> add the folder under your Claude skills directory (or import via the product’s skill UI if available).</li>
+          <li><strong>Cursor:</strong> place it under <code>~/.cursor/skills/</code> (or your project <code>.cursor/skills/</code>) so the agent can load it.</li>
+          <li>Ask a GA4 question — the skill description triggers on analytics, events, UTMs, conversions, and related work talk.</li>
+        </ol>
+
+        <h2>What’s inside</h2>
+        <ul class="skill-contents">
+          <li><code>SKILL.md</code> — how to answer, concept map, core concepts, day-to-day patterns, honesty rules</li>
+          <li><code>reference/</code> — deeper notes (reports &amp; Explore, attribution, campaigns, governance, BigQuery, GA360, and more)</li>
+        </ul>
+
+        <h2>Honesty rules (excerpt)</h2>
+        <ul>
+          <li>No invented metrics, testimonials, or fake case studies</li>
+          <li>Demo screenshots are Merchandise Store — not your property</li>
+          <li>Practice exam ≠ official Google certification</li>
+          <li>Treat numeric limits as last-known; verify on Google Help when stakes are high</li>
+        </ul>
+
+        <p><a href="../coach/index.html">Also powers the on-site Coach</a> · <a href="../index.html#skill-teaser">Back to home teaser</a></p>
+      </section>
+
+      <aside class="skill-preview-aside" aria-label="Skill preview">
+        <div class="skill-preview" tabindex="0">
+          <div class="skill-preview-bar">
+            <span>SKILL.md</span>
+            <span class="skill-preview-chip">ga4-business-toolkit</span>
+          </div>
+          <pre class="skill-preview-body" id="skillPreview">Loading preview…</pre>
+        </div>
+        <p class="skill-preview-note">Miniature of the real skill file — download for the full package.</p>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer" id="siteFooter"></footer>
+  <script src="../js/app.js?v=20260802p"></script>
+  <script>
+    GA4.renderHeader('skill');
+    GA4.renderFooter();
+    fetch(GA4.asset('data/skill/SKILL.md'))
+      .then((r) => r.text())
+      .then((t) => {
+        const lines = t.split('\n').slice(0, 48).join('\n');
+        document.getElementById('skillPreview').textContent = lines + '\n…';
+      })
+      .catch(() => {
+        document.getElementById('skillPreview').textContent =
+          '# GA4 Business Toolkit\n\nPractical GA4 coach notes for GA4 Desk.\nDownload the zip to read the full skill.';
+      });
+  </script>
+</body>
+</html>

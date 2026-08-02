@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" role="img" aria-label="Reports vs Explore">
+  <rect width="720" height="260" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia,serif" font-size="20" fill="#1c2430">Reports vs Explore</text>
+  <rect x="40" y="70" width="300" height="150" rx="14" fill="#fff" stroke="#c5d4d8"/>
+  <text x="60" y="105" font-family="system-ui" font-size="16" font-weight="700" fill="#2a7a82">Reports</text>
+  <text x="60" y="135" font-family="system-ui" font-size="14" fill="#5a6570">Pre-built · shared · fast answers</text>
+  <text x="60" y="165" font-family="system-ui" font-size="14" fill="#5a6570">Good for weekly business reviews</text>
+  <rect x="380" y="70" width="300" height="150" rx="14" fill="#e8f3f4" stroke="#2a7a82"/>
+  <text x="400" y="105" font-family="system-ui" font-size="16" font-weight="700" fill="#1c2430">Explore</text>
+  <text x="400" y="135" font-family="system-ui" font-size="14" fill="#5a6570">Blank canvas · drag dimensions</text>
+  <text x="400" y="165" font-family="system-ui" font-size="14" fill="#5a6570">Good for “why did this drop?”</text>
+</svg>

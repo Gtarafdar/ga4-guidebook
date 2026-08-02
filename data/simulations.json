@@ -1,0 +1,787 @@
+{
+  "structure": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-admin.jpg",
+        "mediaType": "screenshot",
+        "title": "Open Admin",
+        "body": "Account is the umbrella; Property holds day-to-day config; Data streams feed the property."
+      },
+      {
+        "media": "assets/screenshots/demo-streams.jpg",
+        "mediaType": "screenshot",
+        "title": "Open Data streams",
+        "body": "This table lists web/app streams for the property. Open one stream for Measurement ID / tag instructions."
+      },
+      {
+        "media": "assets/screenshots/demo-home.jpg",
+        "mediaType": "screenshot",
+        "title": "Back to Home",
+        "body": "Home shows the unified Merchandise Store view fed by those streams."
+      }
+    ]
+  },
+  "dimensions-metrics": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/dimensions-metrics-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Open a table report",
+        "body": "Open Events or Traffic acquisition. Scan the table: row labels vs numeric columns."
+      },
+      {
+        "media": "assets/screenshots/reports-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Name the dimension",
+        "body": "Point to a row label (Event name, Session source…). That is a dimension — a descriptive label."
+      },
+      {
+        "media": "assets/screenshots/reports-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Name the metric",
+        "body": "Point to a numeric column (Event count, Sessions, Users…). That is a metric — a number."
+      },
+      {
+        "media": "assets/screenshots/reports-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-5.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-6.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 7",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/explore-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 8",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/explore-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 9",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/explore-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 10",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/explore-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 11",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "key-events": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/key-events-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Open Admin → Events",
+        "body": "Find the Events list. Locate an event you might treat as a business outcome."
+      },
+      {
+        "media": "assets/screenshots/eventparams-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Mark as key event",
+        "body": "Use the key-event control (star) only for outcomes that matter. Flagging does not invent new tracking."
+      },
+      {
+        "media": "assets/screenshots/reports-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Check conversion-oriented reporting",
+        "body": "Return to Reports and note where key-event metrics surface after processing."
+      },
+      {
+        "media": "assets/screenshots/reports-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-5.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 7",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-6.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 8",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "reports": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-home.jpg",
+        "mediaType": "screenshot",
+        "title": "Start at Home",
+        "body": "Orient on the Merchandise Store overview."
+      },
+      {
+        "media": "assets/screenshots/demo-reports.jpg",
+        "mediaType": "screenshot",
+        "title": "Reports snapshot",
+        "body": "Standard Life cycle reporting cards."
+      },
+      {
+        "media": "assets/screenshots/demo-realtime.jpg",
+        "mediaType": "screenshot",
+        "title": "Realtime overview",
+        "body": "Use Realtime first after a deploy."
+      },
+      {
+        "media": "assets/screenshots/demo-pages.jpg",
+        "mediaType": "screenshot",
+        "title": "Pages and screens",
+        "body": "Detail report example — dimensions as rows, metrics as numbers."
+      }
+    ]
+  },
+  "explore": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-explore.jpg",
+        "mediaType": "screenshot",
+        "title": "Explore gallery",
+        "body": "Blank / free form / funnel / path — custom analysis lives here."
+      },
+      {
+        "media": "assets/screenshots/demo-reports.jpg",
+        "mediaType": "screenshot",
+        "title": "Contrast with Reports",
+        "body": "Reports = packaged; Explore = custom."
+      }
+    ]
+  },
+  "scopes": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-demographics.jpg",
+        "mediaType": "screenshot",
+        "title": "User-scoped reporting",
+        "body": "Demographics/user reports illustrate user-level lenses — still respect event vs user scope."
+      },
+      {
+        "media": "assets/screenshots/scopes-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Scope diagram in UI context",
+        "body": "Relate nested scopes to how fields appear in tables."
+      },
+      {
+        "media": "assets/screenshots/dimensions-metrics-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Dimension vs metric",
+        "body": "Labels vs numbers still apply inside scoped reports."
+      }
+    ]
+  },
+  "attribution": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-ads-nav.jpg",
+        "mediaType": "screenshot",
+        "title": "Advertising home for attribution",
+        "body": "Attribution tools live under Advertising in the demo."
+      },
+      {
+        "media": "assets/screenshots/attribution-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Attribution report",
+        "body": "Open an attribution view and write down the model name before exporting."
+      },
+      {
+        "media": "assets/screenshots/campaign-tracking-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Acquisition context",
+        "body": "Compare with Traffic acquisition when debating channel credit."
+      }
+    ]
+  },
+  "campaign-tracking": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/campaign-tracking-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Traffic acquisition",
+        "body": "Open Traffic acquisition and inspect Session campaign / source / medium."
+      },
+      {
+        "media": "assets/screenshots/reports-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Spot tagged vs untagged",
+        "body": "Find rows that look like campaigns vs lumped Referral/Direct — untagged links lose clarity."
+      },
+      {
+        "media": "assets/screenshots/reports-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Channel context",
+        "body": "Open channel grouping context and relate it back to source/medium quality."
+      },
+      {
+        "media": "assets/screenshots/reports-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-5.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-6.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 7",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/channel-groups-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 8",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "advertising": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-ads.jpg",
+        "mediaType": "screenshot",
+        "title": "Advertising snapshot",
+        "body": "Conversions and channel credit — name the model in stakeholder updates."
+      },
+      {
+        "media": "assets/screenshots/demo-consent.jpg",
+        "mediaType": "screenshot",
+        "title": "Consent affects ads signals",
+        "body": "Advertising consent signals status matters for ads measurement."
+      }
+    ]
+  },
+  "governance": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/governance-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Admin data settings",
+        "body": "Review data filters / internal traffic / unwanted referral areas (read-only on demo)."
+      },
+      {
+        "media": "assets/screenshots/reports-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Report symptom check",
+        "body": "Open a busy report and look for odd internal-looking or referral noise patterns."
+      },
+      {
+        "media": "assets/screenshots/reports-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Verify with DebugView mindset",
+        "body": "Governance changes need a verification habit — DebugView/Realtime after you change filters on your own property."
+      },
+      {
+        "media": "assets/screenshots/reports-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-5.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-6.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 7",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/debugview-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 8",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "bigquery-api": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/bigquery-api-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Admin linking area",
+        "body": "Locate BigQuery linking / product links in Admin (demo may be limited — still learn the path)."
+      },
+      {
+        "media": "assets/screenshots/reports-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Contrast with UI reports",
+        "body": "Open a standard report: this is summarized UI data; BQ export is for event-level SQL."
+      },
+      {
+        "media": "assets/screenshots/reports-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Choose the pipe",
+        "body": "Decide Data API (scheduled report pulls) vs BigQuery (raw-ish events) vs Measurement Protocol (server/offline)."
+      },
+      {
+        "media": "assets/screenshots/reports-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-5.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-6.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 7",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "ga360": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/governance-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Admin structure reminder",
+        "body": "Open Admin hierarchy — 360 subproperties/roll-ups build on the same Account → Property idea."
+      },
+      {
+        "media": "assets/screenshots/structure-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Governance angle",
+        "body": "Filters and access are how you approximate governed views without 360."
+      },
+      {
+        "media": "assets/screenshots/reports-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Reporting lens",
+        "body": "Open Reports and imagine a filtered child view vs a multi-brand roll-up — different problems."
+      },
+      {
+        "media": "assets/screenshots/reports-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-5.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 7",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/reports-6.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 8",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "consent": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-admin.jpg",
+        "mediaType": "screenshot",
+        "title": "Admin → Consent",
+        "body": "Consent settings sit under Data collection and modification."
+      },
+      {
+        "media": "assets/screenshots/demo-consent.jpg",
+        "mediaType": "screenshot",
+        "title": "Consent settings",
+        "body": "Review behavioral vs advertising consent signal status for the web stream."
+      },
+      {
+        "media": "assets/screenshots/demo-debugview.jpg",
+        "mediaType": "screenshot",
+        "title": "Verify with DebugView",
+        "body": "On your own property, confirm grant/deny behavior in DebugView after CMP changes."
+      }
+    ]
+  },
+  "signalsads": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/signalsads-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Data collection / Signals area",
+        "body": "Find Google Signals / data collection settings (do not enable on accounts you do not own)."
+      },
+      {
+        "media": "assets/screenshots/signalsads-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Identity reporting nuance",
+        "body": "Open a user-related report and note how small slices can threshold when identity features apply."
+      },
+      {
+        "media": "assets/screenshots/user-id-1.jpg",
+        "mediaType": "screenshot",
+        "title": "User-ID alternative",
+        "body": "Compare with User-ID screens — first-party login ID is a different cross-device plan."
+      },
+      {
+        "media": "assets/screenshots/advertising-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "setupassist": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-admin.jpg",
+        "mediaType": "screenshot",
+        "title": "Admin checklist area",
+        "body": "Treat Setup Assistant as reminders — verify with Realtime/DebugView."
+      },
+      {
+        "media": "assets/screenshots/demo-streams.jpg",
+        "mediaType": "screenshot",
+        "title": "Streams must exist",
+        "body": "Collection starts with a configured data stream."
+      },
+      {
+        "media": "assets/screenshots/demo-realtime.jpg",
+        "mediaType": "screenshot",
+        "title": "Prove collection",
+        "body": "Realtime confirms hits independently of checklist greens."
+      }
+    ]
+  },
+  "eventparams": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/eventparams-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Events admin",
+        "body": "Inspect event names and parameters available in the property."
+      },
+      {
+        "media": "assets/screenshots/key-events-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Prefer recommended names",
+        "body": "Map one business action to a recommended event when it fits — before inventing custom names."
+      },
+      {
+        "media": "assets/screenshots/debugview-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Debug a parameter",
+        "body": "Use DebugView to confirm a parameter actually arrives on the event payload."
+      }
+    ]
+  },
+  "enhanced-measurement": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/enhanced-measurement-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Web stream Enhanced measurement",
+        "body": "Open Enhanced measurement toggles on a web stream (read-only on demo if needed)."
+      },
+      {
+        "media": "assets/screenshots/eventparams-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Relate to events list",
+        "body": "Open Events and spot auto-collected interactions that EM can cover (scroll, outbound, etc.)."
+      },
+      {
+        "media": "assets/screenshots/gtag-gtm-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Tag ownership",
+        "body": "Remember EM is stream toggles — custom business events still often need GTM/gtag."
+      }
+    ]
+  },
+  "debugview": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-debugview.jpg",
+        "mediaType": "screenshot",
+        "title": "Open DebugView",
+        "body": "Admin → DebugView. Only debug-flagged devices appear here."
+      },
+      {
+        "media": "assets/screenshots/demo-events-admin.jpg",
+        "mediaType": "screenshot",
+        "title": "Events admin",
+        "body": "Compare what you expect to collect vs Events configuration."
+      },
+      {
+        "media": "assets/screenshots/demo-realtime.jpg",
+        "mediaType": "screenshot",
+        "title": "Realtime backup check",
+        "body": "Realtime confirms recent activity for the property overall."
+      }
+    ]
+  },
+  "user-id": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/user-id-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Identity reporting context",
+        "body": "Find identity / User-ID related admin or reporting context in the demo."
+      },
+      {
+        "media": "assets/screenshots/signalsads-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Contrast Signals",
+        "body": "Open Google Signals related settings/docs path — different identity system than your login User-ID."
+      },
+      {
+        "media": "assets/screenshots/signalsads-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Debug the ID param",
+        "body": "Plan to verify user_id on login events in DebugView on your own implementation."
+      },
+      {
+        "media": "assets/screenshots/debugview-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "cross-domain": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/cross-domain-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Configure your domains",
+        "body": "Locate configure-your-domains / linker settings on a web stream."
+      },
+      {
+        "media": "assets/screenshots/gtag-gtm-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Tag instructions context",
+        "body": "Open tag instructions — linker/cross-domain is part of how the Google tag keeps continuity."
+      },
+      {
+        "media": "assets/screenshots/campaign-tracking-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Campaign / referral side effects",
+        "body": "Broken hops often look like new sessions or referral spikes in acquisition reports."
+      }
+    ]
+  },
+  "predictive": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/predictive-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Check predictive availability",
+        "body": "Look for predictive metrics/audiences; note if greyed out on thin demo data."
+      },
+      {
+        "media": "assets/screenshots/explore-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Explore activation ideas",
+        "body": "Open Explore — predictive audiences are often used for activation, not just charts."
+      },
+      {
+        "media": "assets/screenshots/explore-2.jpg",
+        "mediaType": "screenshot",
+        "title": "Advertising adjacency",
+        "body": "When eligible, predictive audiences connect to Ads-style activation after linking."
+      },
+      {
+        "media": "assets/screenshots/explore-3.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 4",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/explore-4.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 5",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      },
+      {
+        "media": "assets/screenshots/advertising-1.jpg",
+        "mediaType": "screenshot",
+        "title": "Demo screenshot 6",
+        "body": "Study this demo-account screen. Open the live demo to click the same UI."
+      }
+    ]
+  },
+  "channel-groups": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-channels.jpg",
+        "mediaType": "screenshot",
+        "title": "Channel groups",
+        "body": "Default vs custom channel groups; set Primary intentionally."
+      },
+      {
+        "media": "assets/screenshots/demo-reports.jpg",
+        "mediaType": "screenshot",
+        "title": "See channels in Reports",
+        "body": "Channel labels show up in acquisition reporting."
+      }
+    ]
+  },
+  "gtag-gtm": {
+    "title": "Follow the screen (GA4 demo)",
+    "demoUrl": "https://analytics.google.com/analytics/web/?utm_source=demoaccount&utm_medium=demoaccount&utm_campaign=demoaccount#/a54516992p213025502/reports/intelligenthome",
+    "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+    "steps": [
+      {
+        "media": "assets/screenshots/demo-admin.jpg",
+        "mediaType": "screenshot",
+        "title": "Open Admin",
+        "body": "Tag install starts from the property’s data stream."
+      },
+      {
+        "media": "assets/screenshots/demo-streams.jpg",
+        "mediaType": "screenshot",
+        "title": "Data streams table",
+        "body": "Open the web stream for Measurement ID and tag instructions (gtag vs GTM)."
+      },
+      {
+        "media": "assets/screenshots/demo-debugview.jpg",
+        "mediaType": "screenshot",
+        "title": "Verify in DebugView",
+        "body": "After publish, confirm hits on a debug device."
+      }
+    ]
+  }
+}

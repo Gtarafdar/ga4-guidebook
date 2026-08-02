@@ -1,0 +1,794 @@
+{
+  "cheatsheet": [
+    "<b>Structure:</b> Account → Property → Data stream. One property can hold multiple streams (web+app) for one unified view.",
+    "<b>Dimensions vs. metrics:</b> dimension = a label ('what'), metric = a number ('how much'). Every report is just the two paired up.",
+    "<b>Key events:</b> flagging an event as a 'key event' doesn't add tracking — it just marks it as a conversion. Old Universal Analytics name: Goal/Conversion.",
+    "<b>Reports:</b> Realtime = last 30 minutes (use to confirm tracking). Standard reports can take 24–48 hours to fully populate.",
+    "<b>Segments vs. audiences:</b> segment = one-off, lives inside Explore. Audience = reusable, persists, can drive Ads remarketing.",
+    "<b>Scopes:</b> every dimension/metric is scoped to user, session, or event — a mismatch is the most common cause of 'weird' numbers.",
+    "<b>Attribution:</b> GA4's default is Data-Driven Attribution, not last-click. Last-click overcredits closing channels; first-click overcredits discovery channels.",
+    "<b>Campaign tracking:</b> UTM tags identify traffic explicitly. Google Ads uses auto-tagging (gclid) instead of manual UTMs.",
+    "<b>Advertising/budgeting:</b> cross-channel numbers shift depending on which attribution model is applied — always say which one you're using.",
+    "<b>Governance/cardinality:</b> a big '(other)' row means a high-cardinality dimension, not broken tracking. Filters aren't retroactive.",
+    "<b>BigQuery/APIs:</b> BigQuery export is free on standard GA4 (~1M events/day cap). Data API = pull reports in code. Admin API = manage config. Measurement Protocol = send offline/server-side events.",
+    "<b>GA4 360:</b> Subproperty = filtered data from ONE source property (governance). Roll-up property = combines TWO+ source properties into one view.",
+    "<b>Consent Mode:</b> denied consent doesn't stop collection entirely — it switches GA4 to cookieless pings and modeled (estimated) data instead of full-fidelity hits.",
+    "<b>Google Signals:</b> only recognizes users across devices when they're signed into Google AND have Ads Personalization turned on — it's off by default and must be activated.",
+    "<b>Setup Assistant:</b> a checklist inside Admin, not a one-time wizard — revisit it after big changes (new streams, Ads account, key events) since it re-flags anything still incomplete.",
+    "<b>Events:</b> automatically collected → recommended → custom, in that priority order. Only build a custom event if no recommended event already fits — custom events skip most standard reports.",
+    "<b>Enhanced measurement:</b> one toggle per web stream auto-fires scroll, outbound click, site search, form interaction, video engagement, and file download events — zero code required.",
+    "<b>DebugView:</b> real-time event verification tool. Only shows devices explicitly flagged for debug mode — normal production traffic never appears here.",
+    "<b>User-ID:</b> your own logged-in identifier, sent deliberately with events, for cross-device stitching — different from (and more reliable than) Google Signals, but requires implementation work.",
+    "<b>Cross-domain measurement:</b> without listing both domains in tag settings, crossing to a second domain (e.g. checkout) starts a brand-new session instead of continuing the same one.",
+    "<b>Predictive metrics:</b> purchase probability, churn probability, predicted revenue — only available once a property has enough qualifying positive/negative examples in the past 28 days.",
+    "<b>Custom channel groups:</b> up to 3 channel groups per property (including Default), one marked Primary — custom groups let you define business-specific channel logic.",
+    "<b>gtag.js vs. GTM:</b> both install the same underlying Google tag — gtag.js is a direct code snippet, GTM is a managed container for handling many tags without further code deploys."
+  ],
+  "videos": {
+    "structure": {
+      "id": "pNfD4jDF8TE",
+      "title": "1.3 How to structure your Google Analytics account, property, and data streams - Analytics Academy",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "A6-xw1bEEzQ",
+          "title": "1.0 Get started using Google Analytics with Skillshop's Analytics Academy course",
+          "source": "official",
+          "creator": "Google Analytics"
+        },
+        {
+          "id": "ybK-VUAxZ_8",
+          "title": "1.3.2 Create a new Google Analytics account and property - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "dimensions-metrics": {
+      "id": "BlKDZgH8Qqw",
+      "title": "1.8 How dimensions and metrics power your reports - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "FuTbJ2COdrI",
+          "title": "Learn how dimensions and metrics power your reports - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "key-events": {
+      "id": "Ror4ubtzMq0",
+      "title": "2.4 Understand & create key events in Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": []
+    },
+    "reports": {
+      "id": "KiYVhk1w36E",
+      "title": "2.6 Get to know the pre-defined reports in Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "PBeUqHIRXNE",
+          "title": "2.1 Tour the Google Analytics user interface - learn where to find reports, settings, and more",
+          "source": "official",
+          "creator": "Google Analytics"
+        },
+        {
+          "id": "uNKcis-wnro",
+          "title": "2.5 Navigate Overview and Detail reports in Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        },
+        {
+          "id": "PDPkXKGRaZM",
+          "title": "2.7 Filter and compare data in reports in Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        },
+        {
+          "id": "BkvRu5-Cuz4",
+          "title": "1.6 Confirm data collection is working in Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "explore": {
+      "id": "MwlRg4B7X0c",
+      "title": "2.8 Use Explore for advanced analysis in Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": []
+    },
+    "governance": {
+      "id": "9Uokq4bhHjE",
+      "title": "2.3 Filter data and hide unwanted referrals in Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": []
+    },
+    "bigquery-api": {
+      "id": "TAdi6j-c7WM",
+      "title": "4.5 Learn About the Google Analytics APIs - [New GA4] Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "udFtKtK1a6Y",
+          "title": "Why Setting up a BigQuery Export is Crucial for Your Data Analysis",
+          "source": "expert",
+          "creator": "Measurelab"
+        }
+      ]
+    },
+    "setupassist": {
+      "id": "THb5SassY1k",
+      "title": "1.4 Set up website data collection for Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "jKDykqKDMLI",
+          "title": "1.7 Manage user roles, data settings, and more in Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        },
+        {
+          "id": "PeTA6aCXV0E",
+          "title": "1.5 Set up your app's data collection with Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "eventparams": {
+      "id": "R_jW24nAjX4",
+      "title": "2.2 Create and manage events in Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": []
+    },
+    "debugview": {
+      "id": "BkvRu5-Cuz4",
+      "title": "1.6 Confirm data collection is working in Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "dNsCUnUOlgE",
+          "title": "DebugView in Google Analytics 4",
+          "source": "expert",
+          "creator": "Analytics Mania - Google Analytics & Tag Manager"
+        },
+        {
+          "id": "1A0Gr2ZNDHA",
+          "title": "Google Analytics 4 DebugView not working? Here are the solutions",
+          "source": "expert",
+          "creator": "Analytics Mania - Google Analytics & Tag Manager"
+        }
+      ]
+    },
+    "gtag-gtm": {
+      "id": "THb5SassY1k",
+      "title": "1.4 Set up website data collection for Google Analytics - Analytics Academy on Skillshop",
+      "source": "official",
+      "creator": "Google Analytics",
+      "related": [
+        {
+          "id": "RxcfKsj6-kQ",
+          "title": "Google Tag Manager vs GTAG. Which one to choose? How are they different?",
+          "source": "expert",
+          "creator": "Analytics Mania - Google Analytics & Tag Manager"
+        }
+      ]
+    },
+    "scopes": {
+      "id": "VQlcZYlJItM",
+      "title": "User-scoped custom dimensions in Google Analytics 4",
+      "source": "expert",
+      "creator": "Analytics Mania - Google Analytics & Tag Manager",
+      "related": [
+        {
+          "id": "f35RP9Ru6Fw",
+          "title": "What is Scope in Google Analytics? Understanding Hit, Session and User Scope",
+          "source": "expert",
+          "creator": "MeasureSchool"
+        },
+        {
+          "id": "BlKDZgH8Qqw",
+          "title": "1.8 How dimensions and metrics power your reports - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "attribution": {
+      "id": "6fR-qVvmNSo",
+      "title": "Changes to attribution models in GA4 (Google Analytics 4)",
+      "source": "expert",
+      "creator": "Loves Data",
+      "related": [
+        {
+          "id": "w-sxUFaBGJU",
+          "title": "What Is Attribution In Google Analytics? Learn About Attribution Models In Google Analytics",
+          "source": "expert",
+          "creator": "Loves Data"
+        }
+      ]
+    },
+    "campaign-tracking": {
+      "id": "Fl5OcKM22Ro",
+      "title": "UTM parameters in Google Analytics 4 || GA4 campaign tracking with UTMs",
+      "source": "expert",
+      "creator": "Analytics Mania - Google Analytics & Tag Manager",
+      "related": [
+        {
+          "id": "528KT86vJZQ",
+          "title": "Decoding UTM Parameters in GA4: My Process",
+          "source": "expert",
+          "creator": "MeasureSchool"
+        }
+      ]
+    },
+    "advertising": {
+      "id": "SnnXNUdy0T4",
+      "title": "How To Link Google Ads To Google Analytics 4 (GA4)",
+      "source": "expert",
+      "creator": "Loves Data",
+      "related": [
+        {
+          "id": "PBeUqHIRXNE",
+          "title": "2.1 Tour the Google Analytics user interface - learn where to find reports, settings, and more",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "ga360": {
+      "id": "olZASVlX3Z0",
+      "title": "Dan's Deep Dive - What is Google Analytics 360?",
+      "source": "expert",
+      "creator": "Measurelab",
+      "related": [
+        {
+          "id": "jKDykqKDMLI",
+          "title": "1.7 Manage user roles, data settings, and more in Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "consent": {
+      "id": "sOv6MS67P88",
+      "title": "Cookie Banner & Consent Mode with Google Tag Manager – GTM Tutorial Lesson 7",
+      "source": "expert",
+      "creator": "Loves Data",
+      "related": [
+        {
+          "id": "T0ofinbYwHM",
+          "title": "Cookiebot Tutorial: Set Up Consent Mode v2 with GTM",
+          "source": "expert",
+          "creator": "Loves Data"
+        }
+      ]
+    },
+    "signalsads": {
+      "id": "VnoGWByeODc",
+      "title": "Activating and using Google Signals with Google Analytics",
+      "source": "expert",
+      "creator": "Loves Data",
+      "related": [
+        {
+          "id": "yfbgyhnfZhk",
+          "title": "Google Signals Removed From Google Analytics 4",
+          "source": "expert",
+          "creator": "Loves Data"
+        }
+      ]
+    },
+    "enhanced-measurement": {
+      "id": "jRGhWRwlYzk",
+      "title": "Enhanced Measurement in Google Analytics 4",
+      "source": "expert",
+      "creator": "Analytics Mania - Google Analytics & Tag Manager",
+      "related": [
+        {
+          "id": "yM0LGcN1taw",
+          "title": "Enhanced Measurement in Google Analytics 4 (GA4) // Automatically Tracking Important Actions",
+          "source": "expert",
+          "creator": "Loves Data"
+        },
+        {
+          "id": "R_jW24nAjX4",
+          "title": "2.2 Create and manage events in Google Analytics - Analytics Academy on Skillshop",
+          "source": "official",
+          "creator": "Google Analytics"
+        }
+      ]
+    },
+    "user-id": {
+      "id": "2amBrQYFUCE",
+      "title": "User ID tracking in Google Analytics 4 - With Google Tag Manager",
+      "source": "expert",
+      "creator": "Analytics Mania - Google Analytics & Tag Manager",
+      "related": [
+        {
+          "id": "0nGu1sHZDt4",
+          "title": "Google Analytics Client ID vs User ID",
+          "source": "expert",
+          "creator": "Analytics Mania - Google Analytics & Tag Manager"
+        }
+      ]
+    },
+    "cross-domain": {
+      "id": "u4kBqTijBVo",
+      "title": "Cross-domain tracking in Google Analytics 4 ||  Track users across different domains",
+      "source": "expert",
+      "creator": "Analytics Mania - Google Analytics & Tag Manager",
+      "related": [
+        {
+          "id": "wxfN9NZIfpk",
+          "title": "Google Analytics 4 cross-domain tracking not working? Here are the solutions",
+          "source": "expert",
+          "creator": "Analytics Mania - Google Analytics & Tag Manager"
+        }
+      ]
+    },
+    "predictive": {
+      "id": "wld2YUILbeE",
+      "title": "Dan's Deep Dive - Predictive metrics in GA4",
+      "source": "expert",
+      "creator": "Measurelab",
+      "related": [
+        {
+          "id": "iwRJkI-EiII",
+          "title": "Forecasting User Behaviour with GA4 Predictive Metrics",
+          "source": "expert",
+          "creator": "Measurelab"
+        }
+      ]
+    },
+    "channel-groups": {
+      "id": "9tb4TGDlu4c",
+      "title": "Custom channel groups in Google Analytics 4 || Custom Channel Groups in GA4",
+      "source": "expert",
+      "creator": "Analytics Mania - Google Analytics & Tag Manager",
+      "related": [
+        {
+          "id": "mYCXCgugIkE",
+          "title": "Finally! Custom Channel Groups Available in GA4",
+          "source": "expert",
+          "creator": "MeasureSchool"
+        }
+      ]
+    }
+  },
+  "playlistUrl": "https://www.youtube.com/playlist?list=PLI5YfMzCfRtZNBRmhTEJkcHYvN_x_wpxM",
+  "videoHubUrl": "https://support.google.com/analytics/answer/13284728",
+  "demoJoinUrl": "https://support.google.com/analytics/answer/6367342",
+  "exam": {
+    "numQuestions": 40,
+    "timeLimitMin": 40,
+    "passPercent": 80
+  },
+  "topicCount": 23,
+  "questionCount": 494,
+  "videoMappingNote": "Official = Skillshop/Google Analytics (title-verified). Expert = Analytics Mania / Loves Data / MeasureSchool / Measurelab (oEmbed-verified). No guessed IDs.",
+  "illustrations": {
+    "attribution": [
+      {
+        "src": "assets/illustrations/scenarios/attribution.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/attribution-credit.svg",
+        "caption": "Attribution credit across touchpoints"
+      }
+    ],
+    "scopes": [
+      {
+        "src": "assets/illustrations/scenarios/scopes.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scopes-nesting.svg",
+        "caption": "User → session → event scope nesting"
+      }
+    ],
+    "key-events": [
+      {
+        "src": "assets/illustrations/scenarios/key-events.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/key-events-flag.svg",
+        "caption": "Key event flag on an existing event"
+      }
+    ],
+    "explore": [
+      {
+        "src": "assets/illustrations/scenarios/explore-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/explore.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/explore-segment-audience.svg",
+        "caption": "Segment vs audience"
+      }
+    ],
+    "dimensions-metrics": [
+      {
+        "src": "assets/illustrations/scenarios/dimensions-metrics.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/dimensions-metrics.svg",
+        "caption": "Dimensions vs metrics"
+      }
+    ],
+    "campaign-tracking": [
+      {
+        "src": "assets/illustrations/scenarios/campaign-tracking.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/utm-anatomy.svg",
+        "caption": "UTM parameter anatomy"
+      }
+    ],
+    "consent": [
+      {
+        "src": "assets/illustrations/scenarios/consent-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/consent.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/consent-modes.svg",
+        "caption": "Consent granted vs denied fidelity"
+      }
+    ],
+    "structure": [
+      {
+        "src": "assets/illustrations/scenarios/structure-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/structure.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/structure-hierarchy.svg",
+        "caption": "When to split properties (decision guide)",
+        "kind": "info"
+      }
+    ],
+    "reports": [
+      {
+        "src": "assets/illustrations/scenarios/reports-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/reports.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/reports-map.svg",
+        "caption": "Reports vs Explore at a glance"
+      }
+    ],
+    "advertising": [
+      {
+        "src": "assets/illustrations/scenarios/advertising.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "governance": [
+      {
+        "src": "assets/illustrations/scenarios/governance.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "bigquery-api": [
+      {
+        "src": "assets/illustrations/scenarios/bigquery-api.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "ga360": [
+      {
+        "src": "assets/illustrations/scenarios/ga360.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "signalsads": [
+      {
+        "src": "assets/illustrations/scenarios/signalsads.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "setupassist": [
+      {
+        "src": "assets/illustrations/scenarios/setupassist.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "eventparams": [
+      {
+        "src": "assets/illustrations/scenarios/eventparams.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "enhanced-measurement": [
+      {
+        "src": "assets/illustrations/scenarios/enhanced-measurement.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "debugview": [
+      {
+        "src": "assets/illustrations/scenarios/debugview.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/debugview-flow.svg",
+        "caption": "DebugView fix loop"
+      }
+    ],
+    "user-id": [
+      {
+        "src": "assets/illustrations/scenarios/user-id.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "cross-domain": [
+      {
+        "src": "assets/illustrations/scenarios/cross-domain.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "predictive": [
+      {
+        "src": "assets/illustrations/scenarios/predictive.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "channel-groups": [
+      {
+        "src": "assets/illustrations/scenarios/channel-groups.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "gtag-gtm": [
+      {
+        "src": "assets/illustrations/scenarios/gtag-gtm.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/gtag-gtm-compare.svg",
+        "caption": "gtag.js vs Google Tag Manager"
+      }
+    ]
+  },
+  "gatePassPercent": 70,
+  "scenarios": {
+    "structure": [
+      {
+        "src": "assets/illustrations/scenarios/structure-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/structure.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "dimensions-metrics": [
+      {
+        "src": "assets/illustrations/scenarios/dimensions-metrics.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "key-events": [
+      {
+        "src": "assets/illustrations/scenarios/key-events.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "reports": [
+      {
+        "src": "assets/illustrations/scenarios/reports-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/reports.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "explore": [
+      {
+        "src": "assets/illustrations/scenarios/explore-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/explore.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "scopes": [
+      {
+        "src": "assets/illustrations/scenarios/scopes.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "attribution": [
+      {
+        "src": "assets/illustrations/scenarios/attribution.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "campaign-tracking": [
+      {
+        "src": "assets/illustrations/scenarios/campaign-tracking.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "advertising": [
+      {
+        "src": "assets/illustrations/scenarios/advertising.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "governance": [
+      {
+        "src": "assets/illustrations/scenarios/governance.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "bigquery-api": [
+      {
+        "src": "assets/illustrations/scenarios/bigquery-api.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "ga360": [
+      {
+        "src": "assets/illustrations/scenarios/ga360.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "consent": [
+      {
+        "src": "assets/illustrations/scenarios/consent-hero.png",
+        "caption": "Workplace scenario illustration",
+        "kind": "scenario"
+      },
+      {
+        "src": "assets/illustrations/scenarios/consent.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "signalsads": [
+      {
+        "src": "assets/illustrations/scenarios/signalsads.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "setupassist": [
+      {
+        "src": "assets/illustrations/scenarios/setupassist.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "eventparams": [
+      {
+        "src": "assets/illustrations/scenarios/eventparams.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "enhanced-measurement": [
+      {
+        "src": "assets/illustrations/scenarios/enhanced-measurement.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "debugview": [
+      {
+        "src": "assets/illustrations/scenarios/debugview.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "user-id": [
+      {
+        "src": "assets/illustrations/scenarios/user-id.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "cross-domain": [
+      {
+        "src": "assets/illustrations/scenarios/cross-domain.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "predictive": [
+      {
+        "src": "assets/illustrations/scenarios/predictive.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "channel-groups": [
+      {
+        "src": "assets/illustrations/scenarios/channel-groups.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ],
+    "gtag-gtm": [
+      {
+        "src": "assets/illustrations/scenarios/gtag-gtm.svg",
+        "caption": "Scenario path (educational)",
+        "kind": "scenario"
+      }
+    ]
+  }
+}

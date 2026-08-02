@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="GA4 Desk  free GA4 guidebook">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f4f7f8"/>
+      <stop offset="0.55" stop-color="#e8f3f5"/>
+      <stop offset="1" stop-color="#d7ebef"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="80" y1="160" x2="280" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f6e7c"/>
+      <stop offset="1" stop-color="#0a4f59"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1040" cy="120" r="180" fill="#0f6e7c" opacity="0.08"/>
+  <circle cx="160" cy="520" r="140" fill="#c47a3a" opacity="0.1"/>
+  <rect x="96" y="190" width="160" height="160" rx="40" fill="url(#mark)"/>
+  <text x="176" y="290" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="700" fill="#f4fbfc">G4</text>
+  <text x="300" y="250" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="650" fill="#1a2426">GA4 Desk</text>
+  <text x="300" y="320" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34" fill="#3d4f54">A free Google Analytics 4 guidebook</text>
+  <text x="300" y="380" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" fill="#5a6d73">Course ù Academy ù Resources ù Coach ù Skill  not official certification</text>
+  <rect x="300" y="430" width="420" height="8" rx="4" fill="#0f6e7c" opacity="0.35"/>
+</svg>

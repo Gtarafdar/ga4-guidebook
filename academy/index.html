@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Official Skillshop and Expert GA4 videos, always tagged. Part of the free GA4 Desk guidebook.">
+  <link rel="canonical" href="https://gtarafdar.github.io/ga4-guidebook/academy/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtarafdar.github.io/ga4-guidebook/academy/">
+  <meta property="og:title" content="Video Academy — GA4 Desk">
+  <meta property="og:description" content="Official Skillshop and Expert GA4 videos, always tagged. Part of the free GA4 Desk guidebook.">
+  <meta property="og:image" content="https://gtarafdar.github.io/ga4-guidebook/assets/brand/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <title>Video Academy — GA4 Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css?v=20260802p">
+</head>
+<body>
+  <header class="site-header" id="siteHeader"></header>
+  <main class="page">
+    <div class="wrap">
+      <p class="kicker">Video Academy</p>
+      <h1 class="page-title">Official Skillshop + tagged experts</h1>
+      <p class="page-lede">Same card pattern as chapter Watch sections. <span class="chip chip-official">Official</span> = Google Analytics / Skillshop (title-verified). <span class="chip chip-expert">Expert</span> = community creators (oEmbed-verified). No guessed IDs.</p>
+
+      <div class="toolbar" style="margin-bottom:12px">
+        <input class="search-input" id="q" type="search" placeholder="Search title, creator, or chapter…" aria-label="Search videos" style="max-width:420px">
+      </div>
+      <div class="academy-filters" role="group" aria-label="Filter by source">
+        <button type="button" class="active" data-filter="all">All</button>
+        <button type="button" data-filter="official">Official</button>
+        <button type="button" data-filter="expert">Expert</button>
+      </div>
+      <div id="topicFilter" class="academy-filters" role="group" aria-label="Filter by topic"></div>
+      <div class="academy-grid" id="grid"></div>
+    </div>
+  </main>
+  <footer class="site-footer" id="siteFooter"></footer>
+  <script src="../js/app.js?v=20260802p"></script>
+  <script src="../js/render.js?v=20260802p"></script>
+  <script>
+    GA4.renderHeader('academy');
+    GA4.renderFooter();
+
+    let topics = [];
+    let meta = {};
+    let filter = 'all';
+    let topicFilter = 'all';
+
+    function allEntries() {
+      const out = [];
+      topics.forEach((t) => {
+        const v = (meta.videos || {})[t.id];
+        if (!v || !v.id) return;
+        out.push({ ...v, topicId: t.id, topicTitle: t.title, primary: true });
+        (v.related || []).forEach((r) => {
+          out.push({
+            id: r.id,
+            title: r.title,
+            source: r.source || v.source,
+            creator: r.creator || '',
+            topicId: t.id,
+            topicTitle: t.title,
+            primary: false
+          });
+        });
+      });
+      // dedupe by id+topic
+      const seen = new Set();
+      return out.filter((e) => {
+        const k = e.id + '::' + e.topicId;
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+    }
+
+    function paint() {
+      const q = (document.getElementById('q').value || '').toLowerCase().trim();
+      const grid = document.getElementById('grid');
+      const rows = allEntries().filter((e) => {
+        if (filter !== 'all' && (e.source || 'official') !== filter) return false;
+        if (topicFilter !== 'all' && e.topicId !== topicFilter) return false;
+        if (!q) return true;
+        const blob = [e.title, e.creator, e.topicTitle, e.source].join(' ').toLowerCase();
+        return blob.includes(q);
+      });
+      if (!rows.length) {
+        grid.innerHTML = '<p class="video-fallback">No videos match this filter. Try All, or browse the <a href="' + (meta.playlistUrl || '#') + '" target="_blank" rel="noopener">Skillshop playlist</a>.</p>';
+        return;
+      }
+      grid.innerHTML = rows.map((e) => `
+        <article class="academy-card">
+          <div class="topic-line">Chapter: ${GA4.escapeHtml(e.topicTitle)}${e.primary ? '' : ' · related'}</div>
+          ${GA4Render.videoCard(e)}
+        </article>`).join('');
+    }
+
+    Promise.all([GA4.loadJSON('data/topics.json'), GA4.loadJSON('data/meta.json')]).then(([t, m]) => {
+      topics = t; meta = m;
+      GA4Render.setMedia({ videos: m.videos || {}, playlistUrl: m.playlistUrl, videoHubUrl: m.videoHubUrl });
+      const tf = document.getElementById('topicFilter');
+      tf.innerHTML = `<button type="button" class="active" data-topic="all">All chapters</button>` +
+        topics.map((x) => `<button type="button" data-topic="${x.id}">${GA4.escapeHtml(x.title)}</button>`).join('');
+      tf.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+        topicFilter = b.dataset.topic;
+        tf.querySelectorAll('button').forEach((x) => x.classList.toggle('active', x === b));
+        paint();
+      }));
+      document.querySelectorAll('.academy-filters[aria-label="Filter by source"] button').forEach((b) => {
+        b.addEventListener('click', () => {
+          filter = b.dataset.filter;
+          document.querySelectorAll('.academy-filters[aria-label="Filter by source"] button').forEach((x) => x.classList.toggle('active', x === b));
+          paint();
+        });
+      });
+      document.getElementById('q').addEventListener('input', paint);
+      paint();
+    }).catch((e) => {
+      document.getElementById('grid').innerHTML = `<p>Could not load academy. ${GA4.escapeHtml(e.message)}</p>`;
+    });
+  </script>
+</body>
+</html>

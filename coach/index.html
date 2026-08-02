@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Skill-grounded GA4 coach: local search free, optional OpenRouter AI with your own key.">
+  <link rel="canonical" href="https://gtarafdar.github.io/ga4-guidebook/coach/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtarafdar.github.io/ga4-guidebook/coach/">
+  <meta property="og:title" content="GA4 Coach — GA4 Desk">
+  <meta property="og:description" content="Skill-grounded GA4 coach: local search free, optional OpenRouter AI with your own key.">
+  <meta property="og:image" content="https://gtarafdar.github.io/ga4-guidebook/assets/brand/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <title>GA4 Coach — GA4 Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css?v=20260802p">
+</head>
+<body>
+  <header class="site-header" id="siteHeader"></header>
+  <main class="page">
+    <div class="wrap">
+      <p class="kicker">GA4 Coach</p>
+      <h1 style="font-family:var(--font-display);letter-spacing:-0.02em;font-size:clamp(1.8rem,3vw,2.4rem);margin:0 0 8px">Doubt clearance, grounded in this site’s skill</h1>
+      <p style="color:var(--muted);max-width:62ch;margin:0 0 22px">Local search is always free. Optional OpenRouter key unlocks multi-turn AI answers (and screenshot reading) using the curated skill + curriculum — not a blank generic chatbot.</p>
+
+      <div class="chat-shell">
+        <div>
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-compose" style="margin-top:12px">
+            <textarea class="textarea" id="chatInput" placeholder="e.g. What’s the difference between a segment and an audience?"></textarea>
+            <div class="toolbar">
+              <label class="btn btn-secondary btn-sm" style="cursor:pointer">Attach screenshot
+                <input type="file" id="shotInput" accept="image/*" hidden>
+              </label>
+              <button type="button" class="btn btn-secondary btn-sm" id="localBtn">Search locally (free)</button>
+              <button type="button" class="btn btn-primary btn-sm" id="aiBtn">Ask AI</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="clearBtn">Clear chat</button>
+            </div>
+            <img id="shotPreview" class="preview-shot hidden" alt="Screenshot preview">
+          </div>
+        </div>
+        <aside class="settings-box">
+          <strong>AI settings (optional BYOK)</strong>
+          <label><input type="checkbox" id="orEnabled"> Enable OpenRouter AI</label>
+          <label for="orKey">OpenRouter API key</label>
+          <input class="text-input" id="orKey" type="password" placeholder="sk-or-…">
+          <label for="orModel">Text model</label>
+          <input class="text-input" id="orModel" placeholder="openai/gpt-4o-mini">
+          <label for="orVision">Vision model (screenshots)</label>
+          <input class="text-input" id="orVision" placeholder="openai/gpt-4o-mini">
+          <div class="toolbar" style="margin-top:10px">
+            <button type="button" class="btn btn-secondary btn-sm" id="saveOr">Save</button>
+          </div>
+          <p class="hint">Key stays in this browser only and is sent only to OpenRouter when you click Ask AI. Prefer free OpenRouter models to keep cost near zero.</p>
+          <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+          <strong>Read-aloud</strong>
+          <label for="brVoice">Browser voice (free)</label>
+          <select class="select-input" id="brVoice"></select>
+          <label for="brRate">Speed</label>
+          <input class="text-input" id="brRate" type="number" min="0.75" max="1.35" step="0.05" value="1">
+          <label><input type="checkbox" id="elEnabled"> Prefer ElevenLabs when available</label>
+          <label for="elKey">ElevenLabs API key</label>
+          <input class="text-input" id="elKey" type="password" placeholder="xi-…">
+          <label for="elVoice">ElevenLabs voice</label>
+          <select class="select-input" id="elVoice"></select>
+          <div class="toolbar" style="margin-top:10px">
+            <button type="button" class="btn btn-secondary btn-sm" id="saveEl">Save voice settings</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="refreshElVoices">Refresh EL voices</button>
+          </div>
+          <p class="hint">Browser voice is always free. ElevenLabs audio is cached in IndexedDB so the same text isn’t billed twice on this device. Course Listen also has a Voice panel.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer" id="siteFooter"></footer>
+  <script src="../js/app.js?v=20260802p"></script>
+  <script src="../js/tts.js?v=20260802p"></script>
+  <script src="../js/coach.js?v=20260802p"></script>
+  <script>
+    GA4.renderHeader('coach');
+    GA4.renderFooter();
+    let shotDataUrl = null;
+
+    function renderChat() {
+      const log = document.getElementById('chatLog');
+      const chat = GA4Coach.loadChat();
+      if (!chat.length) {
+        log.innerHTML = '<div class="msg assistant">Ask anything about GA4. I’ll search the curated topics and skill first. Attach a screenshot if you want help reading a GA4 screen.</div>';
+        return;
+      }
+      log.innerHTML = chat.map((m) => `<div class="msg ${m.role}">${GA4.escapeHtml(m.content)}</div>`).join('');
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function loadSettingsForm() {
+      const s = GA4Coach.settings();
+      document.getElementById('orEnabled').checked = s.enabled;
+      document.getElementById('orKey').value = s.key;
+      document.getElementById('orModel').value = s.model;
+      document.getElementById('orVision').value = s.visionModel;
+      GA4TTS.bindSettingsForm({
+        enabledEl: document.getElementById('elEnabled'),
+        keyEl: document.getElementById('elKey'),
+        voiceEl: document.getElementById('elVoice'),
+        browserEl: document.getElementById('brVoice'),
+        rateEl: document.getElementById('brRate')
+      });
+    }
+
+    document.getElementById('saveOr').onclick = () => {
+      GA4Coach.saveSettings({
+        enabled: document.getElementById('orEnabled').checked,
+        key: document.getElementById('orKey').value.trim(),
+        model: document.getElementById('orModel').value.trim() || 'openai/gpt-4o-mini',
+        visionModel: document.getElementById('orVision').value.trim() || 'openai/gpt-4o-mini'
+      });
+      alert('OpenRouter settings saved on this device.');
+    };
+    document.getElementById('saveEl').onclick = () => {
+      GA4TTS.saveSettings({
+        enabled: document.getElementById('elEnabled').checked,
+        key: document.getElementById('elKey').value.trim(),
+        voiceId: document.getElementById('elVoice').value.trim() || '21m00Tcm4TlvDq8ikWAM',
+        browserVoice: document.getElementById('brVoice').value,
+        rate: parseFloat(document.getElementById('brRate').value) || 1
+      });
+      alert('Voice settings saved on this device.');
+    };
+    document.getElementById('refreshElVoices').onclick = () => {
+      GA4TTS.saveSettings({
+        key: document.getElementById('elKey').value.trim(),
+        enabled: document.getElementById('elEnabled').checked
+      });
+      GA4TTS.bindSettingsForm({
+        enabledEl: document.getElementById('elEnabled'),
+        keyEl: document.getElementById('elKey'),
+        voiceEl: document.getElementById('elVoice'),
+        browserEl: document.getElementById('brVoice'),
+        rateEl: document.getElementById('brRate')
+      });
+    };
+
+    document.getElementById('shotInput').addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        shotDataUrl = reader.result;
+        const img = document.getElementById('shotPreview');
+        img.src = shotDataUrl;
+        img.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById('localBtn').onclick = () => {
+      const text = document.getElementById('chatInput').value.trim();
+      if (!text) return;
+      GA4Coach.push('user', text);
+      const ans = GA4Coach.localAnswer(text);
+      GA4Coach.push('assistant', ans.text);
+      document.getElementById('chatInput').value = '';
+      renderChat();
+    };
+
+    document.getElementById('aiBtn').onclick = async () => {
+      const text = document.getElementById('chatInput').value.trim();
+      if (!text && !shotDataUrl) return;
+      GA4Coach.push('user', text + (shotDataUrl ? '\n[screenshot attached]' : ''));
+      renderChat();
+      const log = document.getElementById('chatLog');
+      log.insertAdjacentHTML('beforeend', '<div class="msg typing">Thinking…</div>');
+      try {
+        const answer = await GA4Coach.askOpenRouter({ text, imageDataUrl: shotDataUrl });
+        GA4Coach.push('assistant', answer);
+      } catch (e) {
+        GA4Coach.push('error', e.message);
+      }
+      document.getElementById('chatInput').value = '';
+      shotDataUrl = null;
+      document.getElementById('shotPreview').classList.add('hidden');
+      renderChat();
+    };
+
+    document.getElementById('clearBtn').onclick = () => { GA4Coach.clear(); renderChat(); };
+
+    loadSettingsForm();
+    Promise.all([
+      fetch(GA4.asset('data/skill/SKILL.md')).then((r) => r.text()),
+      GA4.loadJSON('data/topics.json'),
+      GA4.loadJSON('data/references.json')
+    ]).then(([skill, topics, refs]) => GA4Coach.init({ skillMarkdown: skill, topics, references: refs }))
+      .then(renderChat)
+      .catch((e) => {
+        document.getElementById('chatLog').innerHTML = `<div class="msg error">Could not load coach data: ${GA4.escapeHtml(e.message)}</div>`;
+      });
+  </script>
+</body>
+</html>

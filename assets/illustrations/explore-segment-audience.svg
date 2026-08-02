@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-label="Segment versus audience">
+  <rect width="720" height="280" fill="#f4f7f8"/>
+  <text x="24" y="36" font-family="Georgia, serif" font-size="20" fill="#1c2430">Segment vs audience (educational)</text>
+  <rect x="48" y="70" width="290" height="150" rx="12" fill="#fff" stroke="#c9d2d8"/>
+  <text x="68" y="104" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1c2430">Segment</text>
+  <text x="68" y="132" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Lives inside an Explore</text>
+  <text x="68" y="156" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">One-off analysis</text>
+  <text x="68" y="180" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Not the remarketing list itself</text>
+  <rect x="382" y="70" width="290" height="150" rx="12" fill="#d7eef0" stroke="#2a7a82"/>
+  <text x="402" y="104" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#1c2430">Audience</text>
+  <text x="402" y="132" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">Reusable user set</text>
+  <text x="402" y="156" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">Can activate in linked Ads</text>
+  <text x="402" y="180" font-family="system-ui,sans-serif" font-size="13" fill="#1c2430">Evaluation can lag</text>
+</svg>

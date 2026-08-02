@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ungated GA4 topic library and reference notes. Same material as the course, no syllabus pressure.">
+  <link rel="canonical" href="https://gtarafdar.github.io/ga4-guidebook/resources/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtarafdar.github.io/ga4-guidebook/resources/">
+  <meta property="og:title" content="Resources — GA4 Desk">
+  <meta property="og:description" content="Ungated GA4 topic library and reference notes. Same material as the course, no syllabus pressure.">
+  <meta property="og:image" content="https://gtarafdar.github.io/ga4-guidebook/assets/brand/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <title>Resources — GA4 Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/site.css?v=20260802p">
+</head>
+<body>
+  <header class="site-header" id="siteHeader"></header>
+  <main class="page">
+    <div class="wrap">
+      <p class="kicker">Resource library</p>
+      <h1 style="font-family:var(--font-display);letter-spacing:-0.02em;font-size:clamp(1.8rem,3vw,2.4rem);margin:0 0 8px">All GA4 material, no course required</h1>
+      <p style="color:var(--muted);max-width:62ch;margin:0 0 18px">Browse topics and deep-dive reference notes. Same content as the course — different door. Progress tracking stays in Course mode only.</p>
+      <div class="toolbar">
+        <input class="search-input" id="search" placeholder="Search topics and references…" style="max-width:420px">
+      </div>
+
+      <div class="layout-split">
+        <aside class="side-panel">
+          <h2>Browse</h2>
+          <ul class="side-list">
+            <li><button type="button" class="active" data-filter="all">Everything</button></li>
+            <li><button type="button" data-filter="topic">Topics</button></li>
+            <li><button type="button" data-filter="reference">Reference notes</button></li>
+          </ul>
+        </aside>
+        <section>
+          <div class="library-grid" id="libraryGrid"></div>
+          <div class="card hidden" id="detailCard"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer" id="siteFooter"></footer>
+  <script src="../js/app.js?v=20260802p"></script>
+  <script src="../js/tts.js?v=20260802p"></script>
+  <script src="../js/lightbox.js?v=20260802p"></script>
+  <script src="../js/diagrams-animate.js?v=20260802p"></script>
+  <script src="../js/render.js?v=20260802p"></script>
+  <script>
+    GA4.renderHeader('resources');
+    GA4.renderFooter();
+    let topics = [], refs = [], stories = {}, filter = 'all', q = '';
+
+    function items() {
+      const list = [];
+      if (filter !== 'reference') topics.forEach((t) => list.push({ kind: 'topic', id: t.id, title: t.title, blurb: t.tldr, raw: t }));
+      if (filter !== 'topic') refs.forEach((r) => list.push({ kind: 'reference', id: r.id, title: r.title, blurb: r.body.replace(/^#.+\n/, '').slice(0, 140) + '…', raw: r }));
+      const qq = q.trim().toLowerCase();
+      return qq ? list.filter((i) => (i.title + ' ' + i.blurb).toLowerCase().includes(qq)) : list;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('libraryGrid');
+      const detail = document.getElementById('detailCard');
+      detail.classList.add('hidden');
+      grid.classList.remove('hidden');
+      const data = items();
+      grid.innerHTML = data.map((i) => `
+        <a class="lib-card" href="#${i.kind}-${i.id}">
+          <div class="kind">${i.kind}</div>
+          <h3>${GA4.escapeHtml(i.title)}</h3>
+          <p>${GA4.escapeHtml(i.blurb)}</p>
+        </a>`).join('') || '<p style="color:var(--muted)">No matches.</p>';
+    }
+
+    function openHash() {
+      const h = (location.hash || '').slice(1);
+      if (!h) { renderGrid(); return; }
+      const [kind, ...rest] = h.split('-');
+      const id = rest.join('-');
+      const grid = document.getElementById('libraryGrid');
+      const detail = document.getElementById('detailCard');
+      if (kind === 'topic') {
+        const t = topics.find((x) => x.id === id);
+        if (!t) return renderGrid();
+        grid.classList.add('hidden');
+        detail.classList.remove('hidden');
+        detail.innerHTML = `
+          <div class="chapter-num">Topic</div>
+          <h2 class="lesson-title">${GA4.escapeHtml(t.title)}</h2>
+          <div class="toolbar"><div id="ttsMount"></div>
+            <a class="btn btn-ghost btn-sm" href="../course/index.html#${t.id}">Open in course</a>
+            <button type="button" class="btn btn-secondary btn-sm" id="backLib">Back to library</button>
+          </div>
+          ${GA4Render.renderLearn(t, { story: stories[t.id], mode: 'resources' })}`;
+        GA4TTS.mountControls(document.getElementById('ttsMount'), () => GA4Render.listenText(t, stories[t.id]));
+        GA4Render.bindSimulations(detail);
+        if (window.GA4Diagrams) GA4Diagrams.bind(detail);
+        if (window.GA4Lightbox) GA4Lightbox.bind(detail);
+        document.getElementById('backLib').onclick = () => { location.hash = ''; renderGrid(); };
+      } else if (kind === 'reference') {
+        const r = refs.find((x) => x.id === id);
+        if (!r) return renderGrid();
+        grid.classList.add('hidden');
+        detail.classList.remove('hidden');
+        const html = GA4.escapeHtml(r.body).replace(/^# .+$/m, '').replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+        detail.innerHTML = `
+          <div class="chapter-num">Reference note</div>
+          <h2 class="lesson-title">${GA4.escapeHtml(r.title)}</h2>
+          <div class="toolbar"><div id="ttsMount"></div>
+            <button type="button" class="btn btn-secondary btn-sm" id="backLib">Back to library</button>
+          </div>
+          <div class="lede-block"><p>${html}</p></div>`;
+        GA4TTS.mountControls(document.getElementById('ttsMount'), () => r.body);
+        document.getElementById('backLib').onclick = () => { location.hash = ''; renderGrid(); };
+      } else renderGrid();
+    }
+
+    document.getElementById('search').addEventListener('input', (e) => { q = e.target.value; if (!location.hash) renderGrid(); });
+    document.querySelectorAll('[data-filter]').forEach((b) => b.addEventListener('click', () => {
+      filter = b.dataset.filter;
+      document.querySelectorAll('[data-filter]').forEach((x) => x.classList.toggle('active', x === b));
+      location.hash = '';
+      renderGrid();
+    }));
+    window.addEventListener('hashchange', openHash);
+
+    Promise.all([
+      GA4.loadJSON('data/topics.json'),
+      GA4.loadJSON('data/references.json'),
+      GA4.loadJSON('data/diagrams.json'),
+      GA4.loadJSON('data/meta.json'),
+      GA4.loadJSON('data/stories.json').catch(() => ({})),
+      GA4.loadJSON('data/simulations.json').catch(() => ({}))
+    ]).then(([t, r, diagrams, m, st, sims]) => {
+      topics = t; refs = r; stories = st || {};
+      GA4Render.setMedia({
+        diagrams,
+        videos: m.videos || {},
+        playlistUrl: m.playlistUrl,
+        videoHubUrl: m.videoHubUrl,
+        simulations: sims || {},
+        illustrations: m.illustrations || {},
+        scenarios: m.scenarios || {}
+      });
+      openHash();
+    });
+  </script>
+</body>
+</html>

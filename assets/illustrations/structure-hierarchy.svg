@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="When to split properties">
+  <rect width="720" height="300" fill="#f4f7f8"/>
+  <text x="28" y="40" font-family="Georgia,serif" font-size="20" fill="#1c2430">When to split properties?</text>
+  <text x="28" y="66" font-family="system-ui,sans-serif" font-size="13" fill="#5a6570">Educational decision guide — not a GA4 screenshot</text>
+  <rect x="28" y="90" width="320" height="180" rx="14" fill="#fff" stroke="#c5d4d8"/>
+  <text x="48" y="124" font-family="system-ui" font-size="15" font-weight="700" fill="#2a7a82">Keep one property when…</text>
+  <text x="48" y="156" font-family="system-ui" font-size="13" fill="#1c2430">• Same brand / same KPIs</text>
+  <text x="48" y="182" font-family="system-ui" font-size="13" fill="#1c2430">• You need cross-stream reporting</text>
+  <text x="48" y="208" font-family="system-ui" font-size="13" fill="#1c2430">• Web + apps share one journey</text>
+  <text x="48" y="234" font-family="system-ui" font-size="13" fill="#1c2430">• One privacy / retention policy</text>
+  <rect x="372" y="90" width="320" height="180" rx="14" fill="#e8f3f4" stroke="#2a7a82"/>
+  <text x="392" y="124" font-family="system-ui" font-size="15" font-weight="700" fill="#1c2430">Split properties when…</text>
+  <text x="392" y="156" font-family="system-ui" font-size="13" fill="#1c2430">• Separate legal entities</text>
+  <text x="392" y="182" font-family="system-ui" font-size="13" fill="#1c2430">• Different data retention needs</text>
+  <text x="392" y="208" font-family="system-ui" font-size="13" fill="#1c2430">• Regions that must stay isolated</text>
+  <text x="392" y="234" font-family="system-ui" font-size="13" fill="#1c2430">• Totally different products/KPIs</text>
+</svg>
