@@ -7,5 +7,5 @@
   </defs>
   <rect width="64" height="64" rx="16" fill="url(#g)"/>
   <rect x="10" y="10" width="44" height="44" rx="12" fill="none" stroke="#e8f4f6" stroke-width="1.5" opacity="0.35"/>
-  <text x="32" y="40" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#f4fbfc" letter-spacing="-0.04em">G4</text>
+  <text x="32" y="39" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#f4fbfc" letter-spacing="-0.06em">GA4</text>
 </svg>
