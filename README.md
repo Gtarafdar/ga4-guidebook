@@ -1,7 +1,7 @@
 # GA4 Desk
 
 <p align="center">
-  <img src="assets/brand/icon.svg" width="72" height="72" alt="GA4 Desk">
+  <img src="assets/brand/readme-icon.png" width="88" height="88" alt="GA4 Desk">
 </p>
 
 <p align="center">

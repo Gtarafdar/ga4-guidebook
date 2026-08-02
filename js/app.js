@@ -220,7 +220,7 @@
     if (!el) return;
     el.innerHTML = `
       <a class="brand" href="${asset('index.html')}">
-        <img class="brand-mark-img" src="${asset('assets/brand/icon.svg?v=20260802q')}" width="36" height="36" alt="GA4" />
+        <img class="brand-mark-img" src="${asset('assets/brand/readme-icon.png?v=20260802r')}" width="36" height="36" alt="GA4" />
         <div class="brand-text">
           <strong>GA4 Desk</strong>
           <span>Guidebook · Course · Skill</span>
