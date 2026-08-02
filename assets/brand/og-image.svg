@@ -17,6 +17,6 @@
   <text x="176" y="286" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="48" font-weight="700" fill="#f4fbfc" letter-spacing="-0.04em">GA4</text>
   <text x="300" y="250" font-family="Georgia, Times New Roman, serif" font-size="72" font-weight="650" fill="#1a2426">GA4 Desk</text>
   <text x="300" y="320" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34" fill="#3d4f54">A free Google Analytics 4 guidebook</text>
-  <text x="300" y="380" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" fill="#5a6d73">Course · Academy · Resources · Coach · Skill — not official certification</text>
+  <text x="300" y="380" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" fill="#5a6d73">Course / Academy / Resources / Coach / Skill - not official certification</text>
   <rect x="300" y="430" width="420" height="8" rx="4" fill="#0f6e7c" opacity="0.35"/>
 </svg>
